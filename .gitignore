@@ -1,5 +1,8 @@
 *.pyc
 
+# latex/
+*.aux
+
 # macos
 *.DS_store
 # Byte-compiled / optimized / DLL files
