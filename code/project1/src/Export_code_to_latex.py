@@ -571,9 +571,10 @@ def get_index_of_auto_generated_appendices(appendix_dir, extension):
         appendix_dir, extension
     )
     for appendix in appendices:
+        substring=f"Auto_generated_{extension[1:]}_App"
         # remove left of index
         remainder = appendix[
-            appendix.rfind(f"Auto_generated_{extension[1:]}_App") + 21 :
+            appendix.rfind(substring) + len(substring) :
         ]
         # remove right of index
         index = int(remainder[:-4])

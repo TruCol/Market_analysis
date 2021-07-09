@@ -114,6 +114,27 @@ showstringspaces=false            %
 \title{Example to plot directly into latex}
 %\author{Authors:\\a-t-0}
 
+% Determine whether it is local compilation or overleaf compilation
+\makeatletter
+\begingroup\endlinechar=-1\relax
+       \everyeof{\noexpand}%
+       \edef\x{\endgroup\def\noexpand\homepath{%
+         \@@input|"kpsewhich --var-value=HOME" }}\x
+\makeatother
+\def\overleafhome{/tmp}% change as appropriate (depending on what Overleaf does)
+
+
+\def\parent_subpath{/latex/project}% change as appropriate (depending on what Overleaf does)
+\usepackage{xstring}
+
+
+\def\project_one{/project1}% change as appropriate
+%enable multirple columns
+\usepackage{multicol}
+\usepackage{multirow}
+
+\usepackage{currfile}
+\usepackage{currfile-abspath}
 
 \date{19-10-2019}
 \begin{document}
@@ -141,25 +162,25 @@ showstringspaces=false            %
 
 \maketitle
 %\setcounter{chapter}{-1}
-%\input{Chapters/Introduction.tex} %\newpage
-%\input{Chapters/chap1.tex} %\newpage
-%\input{Chapters/Conclusion.tex} %\newpage
-\input{latex/project1/Chapters/Introduction.tex} %\newpage
-\input{latex/project1/Chapters/chap1.tex} %\newpage
-\input{latex/project1/Chapters/chap2.tex} %\newpage
-\input{latex/project1/Chapters/chap3.tex} %\newpage
-\input{latex/project1/Chapters/chap4.tex} %\newpage
-\input{latex/project1/Chapters/chap5.tex} %\newpage
-\input{latex/project1/Chapters/conclusion.tex} %\newpage
 
 
-
-
-
-
-
-
-
+\IfFileExists{latex/project1/Chapters/Introduction.tex}{
+	\input{latex/project1/Chapters/Introduction.tex} %\newpage
+	\input{latex/project1/Chapters/chap1.tex} %\newpage
+	\input{latex/project1/Chapters/chap2.tex} %\newpage
+	\input{latex/project1/Chapters/chap3.tex} %\newpage
+	\input{latex/project1/Chapters/chap4.tex} %\newpage
+	\input{latex/project1/Chapters/chap5.tex} %\newpage
+	\input{latex/project1/Chapters/conclusion.tex} %\newpage
+}{
+	\input{Chapters/Introduction.tex} %\newpage
+	\input{Chapters/chap1.tex} %\newpage
+	\input{Chapters/chap2.tex} %\newpage
+	\input{Chapters/chap3.tex} %\newpage
+	\input{Chapters/chap4.tex} %\newpage
+	\input{Chapters/chap5.tex} %\newpage
+	\input{Chapters/conclusion.tex} %\newpage
+}
 
 \bibliographystyle{plain} %plain style
 \bibliography{references}
@@ -175,5 +196,4 @@ showstringspaces=false            %
 \input{latex/project1/Appendices/Auto_generated_py_App1.tex} \newpage
 \input{latex/project1/Appendices/Auto_generated_py_App3.tex} \newpage
 \end{appendices}
-
 \end{document}
