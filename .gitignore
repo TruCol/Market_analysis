@@ -2,6 +2,10 @@
 
 # latex/
 *.aux
+*.bbl
+*.blg
+*.dvi
+*synctex.gz
 
 # macos
 *.DS_store
