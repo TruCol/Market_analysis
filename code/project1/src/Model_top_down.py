@@ -23,14 +23,48 @@ class Model_top_down:
             self.dp.logistics_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
-        self.plot_data(randomness_logistics, revenue_logistics)
-        revenue_pharmaceutics = self.estimate_pharmaceutics_revenue()
-        revenue_algo_trading = self.estimate_algo_trading_revenue()
-        revenue_material_sciences = self.estimate_material_sciences_revenue()
-        revenue_telecommunications = self.estimate_telecommunications_revenue()
+        #self.plot_data(randomness_logistics, revenue_logistics)
+        
+        # algo
+        revenue_algo_trading, randomness_algo_trading = self.estimate_logistics_revenue(
+            self.nr_simulations,
+            self.dp.profit_gain_by_trucol_protocol_consultancy,
+            self.dp.algo_trading_market_profit,
+            self.dp.fraction_of_profit_shared_with_trucol,
+        )
+        #self.plot_data(randomness_algo_trading, revenue_logistics)
+        
+        # material
+        revenue_material_sciences, randomness_material_sciences = self.estimate_logistics_revenue(
+            self.nr_simulations,
+            self.dp.profit_gain_by_trucol_protocol_consultancy,
+            self.dp.material_sciences_market_profit,
+            self.dp.fraction_of_profit_shared_with_trucol,
+        )
+        #self.plot_data(randomness_material_sciences, revenue_logistics)
+        
+        # pharma
+        revenue_pharmaceutics, randomness_pharmaceutics = self.estimate_logistics_revenue(
+            self.nr_simulations,
+            self.dp.profit_gain_by_trucol_protocol_consultancy,
+            self.dp.pharmaceutics_market_profit,
+            self.dp.fraction_of_profit_shared_with_trucol,
+        )
+        #self.plot_data(randomness_pharmaceutics, revenue_logistics)
+       
+        # tele
+        revenue_telecommunications, randomness_telecommunications = self.estimate_logistics_revenue(
+            self.nr_simulations,
+            self.dp.profit_gain_by_trucol_protocol_consultancy,
+            self.dp.telecommunications_market_profit,
+            self.dp.fraction_of_profit_shared_with_trucol,
+        )
+        self.plot_data(randomness_telecommunications, revenue_telecommunications)
+        x_series=[randomness_logistics,randomness_algo_trading,  randomness_material_sciences, randomness_pharmaceutics,randomness_telecommunications]
+        y_series=[revenue_logistics,revenue_algo_trading,  revenue_material_sciences, revenue_pharmaceutics,revenue_telecommunications]
         # estimated_revenue=revenue_logistics+revenue_pharmaceutics+revenue_algo_trading+revenue_material_sciences+revenue_telecommunications
         estimated_revenue = 0
-        return estimated_revenue
+        return x_series, y_series
 
     def estimate_logistics_revenue(
         self, N, gain, market_profit, shared_profit_fraction
@@ -79,6 +113,7 @@ class Model_top_down:
         plt.ylabel("Estimated revenue")
         plt.title("Monte-carlo simulation estimated\n yearly revenue TruCol consultancy")
         plt.show()
+        plt.savefig("example.png")
 
     def get_normal_dist(self):
         # Creating a series of data of in range of 1-50.

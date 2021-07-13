@@ -45,6 +45,11 @@ class Datapoints:
         self.telecommunications_market_profit_margin = (
             self.logistics_market_profit_margin
         )
+        
+        self.algo_trading_market_profit = self.get_market_profit(self.algo_trading_market_size, self.algo_trading_market_profit_margin)
+        self.material_sciences_market_profit = self.get_market_profit(self.material_sciences_market_size, self.material_sciences_market_profit_margin)
+        self.pharmaceutics_market_profit = self.get_market_profit(self.pharmaceutics_market_size, self.pharmaceutics_market_profit_margin)
+        self.telecommunications_market_profit = self.get_market_profit(self.telecommunications_market_size, self.telecommunications_market_profit_margin)
 
     def get_logistics_market_profit(self):
         net_profit_remainder = (
@@ -55,6 +60,9 @@ class Datapoints:
         net_profit_logistics_market = net_profit_remainder + self.profit_dhl_fedex_ups
         print(f"net_profit_logistics_market={net_profit_logistics_market}")
         return net_profit_logistics_market
+        
+    def get_market_profit(self, market_size, profit_margin):
+        return market_size* profit_margin
 
     def get_market_profit_margin(self, market_size, net_profit):
         print(f"profit_margin={net_profit/market_size}")
