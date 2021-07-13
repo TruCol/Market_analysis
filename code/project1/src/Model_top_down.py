@@ -15,9 +15,32 @@ class Model_top_down:
     def __init__(self):
         self.nr_simulations = 300
         self.dp = Datapoints()
-        x_series, y_series= self.estimate_revenue()
+        x_series, y_series = self.estimate_revenue()
         self.plot_data_series(x_series, y_series)
         # self.get_normal_dist ()
+        y = self.sum_revenues(y_series)
+        x = self.avg_randomness(x_series)
+
+        self.plot_data(x, y)
+
+    def sum_revenues(self, x_series):
+        summed_series = []
+        for i in range(0, len(x_series[0])):
+            summed = 0
+            for j in range(0, len(x_series)):
+                summed = summed + x_series[j][i]
+
+            summed_series.append(summed)
+        return summed_series
+
+    def avg_randomness(self, series):
+        summed_series = []
+        for i in range(0, len(series[0])):
+            summed = 0
+            for j in range(0, len(series)):
+                summed = summed + series[j][i]
+            summed_series.append(summed / len(series))
+        return summed_series
 
     def estimate_revenue(self):
         revenue_logistics, randomness_logistics = self.estimate_logistics_revenue(
@@ -26,8 +49,8 @@ class Model_top_down:
             self.dp.logistics_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
-        #self.plot_data(randomness_logistics, revenue_logistics)
-        
+        # self.plot_data(randomness_logistics, revenue_logistics)
+
         # algo
         revenue_algo_trading, randomness_algo_trading = self.estimate_logistics_revenue(
             self.nr_simulations,
@@ -35,40 +58,65 @@ class Model_top_down:
             self.dp.algo_trading_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
-        print(f'algo_trading_market_profit={self.dp.algo_trading_market_profit}')
-        #self.plot_data(randomness_algo_trading, revenue_logistics)
-        
+        print(f"algo_trading_market_profit={self.dp.algo_trading_market_profit}")
+        # self.plot_data(randomness_algo_trading, revenue_logistics)
+
         # material
-        revenue_material_sciences, randomness_material_sciences = self.estimate_logistics_revenue(
+        (
+            revenue_material_sciences,
+            randomness_material_sciences,
+        ) = self.estimate_logistics_revenue(
             self.nr_simulations,
             self.dp.profit_gain_by_trucol_protocol_consultancy,
             self.dp.material_sciences_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
-        print(f'material_sciences_market_profit={self.dp.material_sciences_market_profit}')
-        #self.plot_data(randomness_material_sciences, revenue_logistics)
-        
+        print(
+            f"material_sciences_market_profit={self.dp.material_sciences_market_profit}"
+        )
+        # self.plot_data(randomness_material_sciences, revenue_logistics)
+
         # pharma
-        revenue_pharmaceutics, randomness_pharmaceutics = self.estimate_logistics_revenue(
+        (
+            revenue_pharmaceutics,
+            randomness_pharmaceutics,
+        ) = self.estimate_logistics_revenue(
             self.nr_simulations,
             self.dp.profit_gain_by_trucol_protocol_consultancy,
             self.dp.pharmaceutics_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
-        print(f'pharmaceutics_market_profit={self.dp.pharmaceutics_market_profit}')
-        #self.plot_data(randomness_pharmaceutics, revenue_logistics)
-       
+        print(f"pharmaceutics_market_profit={self.dp.pharmaceutics_market_profit}")
+        # self.plot_data(randomness_pharmaceutics, revenue_logistics)
+
         # tele
-        revenue_telecommunications, randomness_telecommunications = self.estimate_logistics_revenue(
+        (
+            revenue_telecommunications,
+            randomness_telecommunications,
+        ) = self.estimate_logistics_revenue(
             self.nr_simulations,
             self.dp.profit_gain_by_trucol_protocol_consultancy,
             self.dp.telecommunications_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
-        print(f'telecommunications_market_profit={self.dp.telecommunications_market_profit}')
-        #self.plot_data(randomness_telecommunications, revenue_telecommunications)
-        x_series=[randomness_logistics,randomness_algo_trading,  randomness_material_sciences, randomness_pharmaceutics,randomness_telecommunications]
-        y_series=[revenue_logistics,revenue_algo_trading,  revenue_material_sciences, revenue_pharmaceutics,revenue_telecommunications]
+        print(
+            f"telecommunications_market_profit={self.dp.telecommunications_market_profit}"
+        )
+        # self.plot_data(randomness_telecommunications, revenue_telecommunications)
+        x_series = [
+            randomness_logistics,
+            randomness_algo_trading,
+            randomness_material_sciences,
+            randomness_pharmaceutics,
+            randomness_telecommunications,
+        ]
+        y_series = [
+            revenue_logistics,
+            revenue_algo_trading,
+            revenue_material_sciences,
+            revenue_pharmaceutics,
+            revenue_telecommunications,
+        ]
         # estimated_revenue=revenue_logistics+revenue_pharmaceutics+revenue_algo_trading+revenue_material_sciences+revenue_telecommunications
         estimated_revenue = 0
         return x_series, y_series
@@ -107,70 +155,99 @@ class Model_top_down:
         # y = np.random.rand(N)*10
 
         # random colour for points, vector of length N
-        colors = np.random.rand(N)
+        # colors = np.random.rand(N)
+        colors = np.ones(N)
         print(f"colors={colors}")
         print(f"x={x}")
 
         # area of the circle, vectoe of length N
         # area = (30 * np.random.rand(N))**2
 
-        plt.figure()
+        # plt.figure()
+        import matplotlib.pyplot as plt
+        import matplotlib.ticker as ticker
+
+        fig, ax = plt.subplots()
+        scale_y = 1e6
+        ticks_y = ticker.FuncFormatter(lambda x, pos: "{0:g}".format(x / scale_y))
+        ax.yaxis.set_major_formatter(ticks_y)
+        ax.set_ylabel("val in millions")
+
         plt.scatter(x, y, c=colors, alpha=0.8)
-        plt.xlabel("Randomness")
-        plt.ylabel("Estimated revenue")
-        plt.title("Monte-carlo simulation estimated\n yearly revenue TruCol consultancy")
-        plt.show()
-        plt.savefig("example.png")
+        plt.xlabel("Summed Squared Average Randomness")
+        plt.ylabel("Estimated revenue in $million/year")
+        plt.title("Monte-carlo simulation\n estimated total revenue TruCol consultancy")
+        # plt.show()
+        plt.savefig("revenue_sum.png")
 
     def plot_data_series(self, x_series, y_series):
-        #x=concatenate_series(x_series)
+        # x=concatenate_series(x_series)
         x = [item for sublist in x_series for item in sublist]
         y = [item for sublist in y_series for item in sublist]
-        #y=concatenate_series(y_series)
-        #N = self.nr_simulations
+        # y=concatenate_series(y_series)
+        # N = self.nr_simulations
         N = len(x)
-        
+
         # x = np.random.rand(N)
         # y = np.random.rand(N)*10
 
         # random colour for points, vector of length N
-        #colors = np.random.rand(N)
-        colors, legend_colors = self.get_colors(x_series,y_series)
-        #print(f"colors={colors}")
-        #print(f"x={x}")
+        # colors = np.random.rand(N)
+        colors, legend_colors = self.get_colors(x_series, y_series)
+        # print(f"colors={colors}")
+        # print(f"x={x}")
 
         # area of the circle, vectoe of length N
         # area = (30 * np.random.rand(N))**2
-        print(f'legend_colors[0]={legend_colors[0]}')
-        plt.figure()
-        #plt.legend(x, ['Line Up', 'Line Down'])
-        logistics = mpatches.Patch(color='yellow', label='logistics')
-        algo_trading = mpatches.Patch(color='green', label='algorithmic trading')
-        material_sciences = mpatches.Patch(color='cyan', label='material sciences')
-        pharmaceutics = mpatches.Patch(color='blue', label='pharmaceutics')
-        telecommunications = mpatches.Patch(color='magenta', label='telecommunications')
-        plt.legend(handles=[logistics, algo_trading,material_sciences,pharmaceutics,telecommunications])
-        plt.scatter(x, y, c=colors, alpha=0.8)
-        plt.xlabel("Randomness")
-        plt.ylabel("Estimated revenue")
-        plt.title("Monte-carlo simulation estimated\n yearly revenue TruCol consultancy")
-        plt.show()
-        plt.savefig("example.png")
+        print(f"legend_colors[0]={legend_colors[0]}")
+        # plt.figure()
+        import matplotlib.pyplot as plt
+        import matplotlib.ticker as ticker
 
-    def get_colors(self, x_series,y_series):
-        #colors= np.random.rand(len(x_series))
-        #print(f'len(colors)={len(colors)}')
-        #exit()
-        #colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta']
-        colors = ['yellow', 'green', 'cyan', 'blue', 'magenta']
+        fig, ax = plt.subplots()
+        scale_y = 1e6
+        ticks_y = ticker.FuncFormatter(lambda x, pos: "{0:g}".format(x / scale_y))
+        ax.yaxis.set_major_formatter(ticks_y)
+        ax.set_ylabel("val in millions")
+
+        # plt.legend(x, ['Line Up', 'Line Down'])
+        logistics = mpatches.Patch(color="yellow", label="logistics")
+        algo_trading = mpatches.Patch(color="green", label="algorithmic trading")
+        material_sciences = mpatches.Patch(color="cyan", label="material sciences")
+        pharmaceutics = mpatches.Patch(color="blue", label="pharmaceutics")
+        telecommunications = mpatches.Patch(color="magenta", label="telecommunications")
+        plt.legend(
+            handles=[
+                logistics,
+                algo_trading,
+                material_sciences,
+                pharmaceutics,
+                telecommunications,
+            ]
+        )
+        plt.scatter(x, y, c=colors, alpha=0.8)
+        plt.xlabel("Summed Squared Randomness")
+        plt.ylabel("Estimated revenue in $million/year")
+        plt.title(
+            "Monte-carlo simulation\n estimated revenue TruCol consultancy per sector"
+        )
+        # plt.show()
+        plt.savefig("revenue_per_sector.png")
+
+    def get_colors(self, x_series, y_series):
+        # colors= np.random.rand(len(x_series))
+        # print(f'len(colors)={len(colors)}')
+        # exit()
+        # colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta']
+        colors = ["yellow", "green", "cyan", "blue", "magenta"]
 
         x = [item for sublist in x_series for item in sublist]
-        color_arr=[]
-        for i in range(0,len(x_series)):
-            for elem in range(0,len(x_series[i])):
+        color_arr = []
+        for i in range(0, len(x_series)):
+            for elem in range(0, len(x_series[i])):
                 color_arr.append(colors[i])
         return color_arr, colors
-            
+
     def get_normal_dist(self):
         # Creating a series of data of in range of 1-50.
         x = np.linspace(1, 50, 200)
@@ -186,7 +263,7 @@ class Model_top_down:
         plt.plot(x, pdf, color="red")
         plt.xlabel("Data points")
         plt.ylabel("Probability Density")
-        plt.show()
+        # plt.show()
 
     # Creating a Function.
     def normal_dist(self, x, mean, sd):
