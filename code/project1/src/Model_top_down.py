@@ -4,6 +4,8 @@ from matplotlib import pyplot as plt
 from matplotlib import lines
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
 
 from .Plot_to_tex import Plot_to_tex as plt_tex
 from .Datapoints import Datapoints
@@ -11,7 +13,7 @@ from .Datapoints import Datapoints
 
 class Model_top_down:
     def __init__(self):
-        self.nr_simulations = 100
+        self.nr_simulations = 300
         self.dp = Datapoints()
         x_series, y_series= self.estimate_revenue()
         self.plot_data_series(x_series, y_series)
@@ -33,6 +35,7 @@ class Model_top_down:
             self.dp.algo_trading_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
+        print(f'algo_trading_market_profit={self.dp.algo_trading_market_profit}')
         #self.plot_data(randomness_algo_trading, revenue_logistics)
         
         # material
@@ -42,6 +45,7 @@ class Model_top_down:
             self.dp.material_sciences_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
+        print(f'material_sciences_market_profit={self.dp.material_sciences_market_profit}')
         #self.plot_data(randomness_material_sciences, revenue_logistics)
         
         # pharma
@@ -51,6 +55,7 @@ class Model_top_down:
             self.dp.pharmaceutics_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
+        print(f'pharmaceutics_market_profit={self.dp.pharmaceutics_market_profit}')
         #self.plot_data(randomness_pharmaceutics, revenue_logistics)
        
         # tele
@@ -60,7 +65,8 @@ class Model_top_down:
             self.dp.telecommunications_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
         )
-        self.plot_data(randomness_telecommunications, revenue_telecommunications)
+        print(f'telecommunications_market_profit={self.dp.telecommunications_market_profit}')
+        #self.plot_data(randomness_telecommunications, revenue_telecommunications)
         x_series=[randomness_logistics,randomness_algo_trading,  randomness_material_sciences, randomness_pharmaceutics,randomness_telecommunications]
         y_series=[revenue_logistics,revenue_algo_trading,  revenue_material_sciences, revenue_pharmaceutics,revenue_telecommunications]
         # estimated_revenue=revenue_logistics+revenue_pharmaceutics+revenue_algo_trading+revenue_material_sciences+revenue_telecommunications
@@ -129,14 +135,21 @@ class Model_top_down:
 
         # random colour for points, vector of length N
         #colors = np.random.rand(N)
-        colors = self.get_colors(x_series,y_series)
+        colors, legend_colors = self.get_colors(x_series,y_series)
         #print(f"colors={colors}")
         #print(f"x={x}")
 
         # area of the circle, vectoe of length N
         # area = (30 * np.random.rand(N))**2
-
+        print(f'legend_colors[0]={legend_colors[0]}')
         plt.figure()
+        #plt.legend(x, ['Line Up', 'Line Down'])
+        logistics = mpatches.Patch(color='yellow', label='logistics')
+        algo_trading = mpatches.Patch(color='green', label='algorithmic trading')
+        material_sciences = mpatches.Patch(color='cyan', label='material sciences')
+        pharmaceutics = mpatches.Patch(color='blue', label='pharmaceutics')
+        telecommunications = mpatches.Patch(color='magenta', label='telecommunications')
+        plt.legend(handles=[logistics, algo_trading,material_sciences,pharmaceutics,telecommunications])
         plt.scatter(x, y, c=colors, alpha=0.8)
         plt.xlabel("Randomness")
         plt.ylabel("Estimated revenue")
@@ -145,13 +158,18 @@ class Model_top_down:
         plt.savefig("example.png")
 
     def get_colors(self, x_series,y_series):
-        colors= np.random.rand(len(x_series))
+        #colors= np.random.rand(len(x_series))
+        #print(f'len(colors)={len(colors)}')
+        #exit()
+        #colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta']
+        colors = ['yellow', 'green', 'cyan', 'blue', 'magenta']
+
         x = [item for sublist in x_series for item in sublist]
         color_arr=[]
         for i in range(0,len(x_series)):
             for elem in range(0,len(x_series[i])):
                 color_arr.append(colors[i])
-        return color_arr
+        return color_arr, colors
             
     def get_normal_dist(self):
         # Creating a series of data of in range of 1-50.
