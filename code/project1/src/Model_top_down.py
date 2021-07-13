@@ -13,7 +13,8 @@ class Model_top_down:
     def __init__(self):
         self.nr_simulations = 100
         self.dp = Datapoints()
-        self.estimate_revenue()
+        x_series, y_series= self.estimate_revenue()
+        self.plot_data_series(x_series, y_series)
         # self.get_normal_dist ()
 
     def estimate_revenue(self):
@@ -115,6 +116,43 @@ class Model_top_down:
         plt.show()
         plt.savefig("example.png")
 
+    def plot_data_series(self, x_series, y_series):
+        #x=concatenate_series(x_series)
+        x = [item for sublist in x_series for item in sublist]
+        y = [item for sublist in y_series for item in sublist]
+        #y=concatenate_series(y_series)
+        #N = self.nr_simulations
+        N = len(x)
+        
+        # x = np.random.rand(N)
+        # y = np.random.rand(N)*10
+
+        # random colour for points, vector of length N
+        #colors = np.random.rand(N)
+        colors = self.get_colors(x_series,y_series)
+        #print(f"colors={colors}")
+        #print(f"x={x}")
+
+        # area of the circle, vectoe of length N
+        # area = (30 * np.random.rand(N))**2
+
+        plt.figure()
+        plt.scatter(x, y, c=colors, alpha=0.8)
+        plt.xlabel("Randomness")
+        plt.ylabel("Estimated revenue")
+        plt.title("Monte-carlo simulation estimated\n yearly revenue TruCol consultancy")
+        plt.show()
+        plt.savefig("example.png")
+
+    def get_colors(self, x_series,y_series):
+        colors= np.random.rand(len(x_series))
+        x = [item for sublist in x_series for item in sublist]
+        color_arr=[]
+        for i in range(0,len(x_series)):
+            for elem in range(0,len(x_series[i])):
+                color_arr.append(colors[i])
+        return color_arr
+            
     def get_normal_dist(self):
         # Creating a series of data of in range of 1-50.
         x = np.linspace(1, 50, 200)
