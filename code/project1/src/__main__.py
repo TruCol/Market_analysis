@@ -7,8 +7,8 @@ project_nr = 1
 main = Main()
 
 # run monte-carlo for revenue estimation
-model = Model_top_down()
-exit()
+model = Model_top_down(project_nr)
+
 
 # export the code to latex
 main.export_code_to_latex(project_nr)
