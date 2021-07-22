@@ -22,6 +22,11 @@ class Datapoints:
         self.profit_dhl_fedex_ups = (
             self.profit_dhl + self.profit_fedex + self.profit_ups
         )
+        
+        # sam and tam factors
+        self.sam_factor=0.03
+        self.tam_factor=0.04
+        print(f'self.profit_dhl_fedex_ups={self.profit_dhl_fedex_ups}')
 
         # Source: https://www.cips.org/supply-management/news/2016/november/logistics-industry-forecast-to-be-worth-155tn-by-2023/
         # NOTE: this article seems an unreliable source and is outdated, hence the 0.15 should possibly be changed/updated.
@@ -34,6 +39,8 @@ class Datapoints:
 
         # Assume avg market profit per dollar market share is uniform.
         self.logistics_market_profit = self.get_logistics_market_profit()
+        #print(f'logistics_market_profit={logistics_market_profit}')
+       
 
         # Conservative estimate based on 0.16 demonstrated by McKinsey & Company study.
         # Source: https://www.mckinsey.com/business-functions/mckinsey-analytics/how-we-help-clients/algorithmic-route-optimization-improves-revenue-for-a-logistics-company#
@@ -62,6 +69,11 @@ class Datapoints:
         # TODO: re-find exact link
         self.telecommunications_market_size = 1.7 * 10 ** 12
 
+        logistics_profit_fraction=self.logistics_market_profit/ self.logistics_market_size
+        print(f'self.profit_dhl_fedex_ups={self.profit_dhl_fedex_ups}')
+        print(f'self.logistics_market_size={self.logistics_market_size}')
+        print(f'logistics_profit_fraction={logistics_profit_fraction}')
+        
         # Compute and assume profit margins
         self.compute_profit_margins()  # for logistics sector the data is known
         self.assume_profit_margins()  # for the other sectors the data is assumed
