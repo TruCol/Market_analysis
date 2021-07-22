@@ -50,6 +50,8 @@ class Model_top_down:
             self.dp.profit_gain_by_trucol_protocol_consultancy,
             self.dp.logistics_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
+            self.dp.sam_factor,
+            self.dp.tam_factor
         )
         # self.plot_data(randomness_logistics, revenue_logistics)
 
@@ -59,6 +61,8 @@ class Model_top_down:
             self.dp.profit_gain_by_trucol_protocol_consultancy,
             self.dp.algo_trading_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
+            self.dp.sam_factor,
+            self.dp.tam_factor
         )
         # self.plot_data(randomness_algo_trading, revenue_algo_trading)
 
@@ -71,6 +75,8 @@ class Model_top_down:
             self.dp.profit_gain_by_trucol_protocol_consultancy,
             self.dp.material_sciences_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
+            self.dp.sam_factor,
+            self.dp.tam_factor
         )
         print(
             f"material_sciences_market_profit={self.dp.material_sciences_market_profit}"
@@ -86,6 +92,8 @@ class Model_top_down:
             self.dp.profit_gain_by_trucol_protocol_consultancy,
             self.dp.pharmaceutics_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
+            self.dp.sam_factor,
+            self.dp.tam_factor
         )
         print(f"pharmaceutics_market_profit={self.dp.pharmaceutics_market_profit}")
         # self.plot_data(randomness_pharmaceutics, revenue_pharmaceutics)
@@ -99,6 +107,8 @@ class Model_top_down:
             self.dp.profit_gain_by_trucol_protocol_consultancy,
             self.dp.telecommunications_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
+            self.dp.sam_factor,
+            self.dp.tam_factor
         )
         print(
             f"telecommunications_market_profit={self.dp.telecommunications_market_profit}"
@@ -122,21 +132,50 @@ class Model_top_down:
         ]
         return x_series, y_series
 
+#    def estimate_logistics_revenue(
+#        self, N, gain, market_profit, shared_profit_fraction
+#    ):
+#        revenue_estimates = []
+#        randomness = []
+#        for i in range(0, N):
+#            # TODO: change to get the range as specified in datapoints per parameter
+#            rand_a = float(np.random.rand(1) * 2)
+#            rand_b = float(np.random.rand(1) * 2)
+#            rand_c = float(np.random.rand(1) * 2)
+#            randomness.append((1 - rand_a) ** 2 + (1 - rand_b) ** 2 + (1 - rand_c) ** 2)
+#            revenue_estimates.append(
+#                market_profit * rand_a * gain * rand_b * shared_profit_fraction * rand_c
+#            )
+#
+#        return revenue_estimates, randomness
+        
     def estimate_logistics_revenue(
-        self, N, gain, market_profit, shared_profit_fraction
+        self, N, gain_range, market_profit_range, shared_profit_fraction_range, sam_factor, tam_factor
     ):
+        print(f'market_profit_range={market_profit_range}')
+        print(f'shared_profit_fraction_range={shared_profit_fraction_range}')
+        exit()
         revenue_estimates = []
         randomness = []
         for i in range(0, N):
             # TODO: change to get the range as specified in datapoints per parameter
-            rand_a = float(np.random.rand(1) * 2)
-            rand_b = float(np.random.rand(1) * 2)
-            rand_c = float(np.random.rand(1) * 2)
-            randomness.append((1 - rand_a) ** 2 + (1 - rand_b) ** 2 + (1 - rand_c) ** 2)
+            rand_market_profit = float(np.random.rand(1) * 5) # factor 0 to 5 as the computed profit margin of 0.0158 seems slightly low
+            rand_gain = float(np.random.rand(1) * 16) # map gain to range of 0.1 to 16% based on McKinsey study
+            #rand_c = float(np.random.rand(1) * 2) # map profit fraction from 0.1 to 10 
+            rand_tam = float(np.random.rand(1) *2) # map tam to factor 2 as it is a rough estimate
+            rand_sam = float(np.random.rand(1) * 2) # map samto factor 2 as it is a rough estimate
+            rand_profit_fraction = float(np.random.rand(1) * 50) # map profit fraction (shared with TruCol) from 1 to 50%
+            randomness.append((1 - rand_market_profit) ** 2 + (1 - rand_gain) ** 2 +(1 - rand_tam) ** 2+(1 - rand_sam) ** 2)
+            rand_market_profit_range=market_profit_range *rand_market_profit
+            rand_gain_rainge= gain_range * rand_gain
+            rand_sam_range=sam_factor*rand_sam
+            rand_tam_range=tam_factor*rand_tam
+            
+            rand_shared_profit_fraction_range=shared_profit_fraction_range*rand_profit_fraction
+            #exit()
             revenue_estimates.append(
-                market_profit * rand_a * gain * rand_b * shared_profit_fraction * rand_c
+                 rand_market_profit_range*rand_sam_range*rand_tam_range*rand_gain_rainge*rand_profit_fraction
             )
-
         return revenue_estimates, randomness
 
     def estimate_pharmaceutics_revenue(self):
@@ -171,7 +210,7 @@ class Model_top_down:
         plt.scatter(x, y, c=colors, alpha=0.8)
         plt.xlabel("Summed Squared Average Randomness")
         plt.ylabel("Estimated revenue in $million/year")
-        plt.title("Monte-carlo simulation\n estimated total revenue TruCol consultancy")
+        plt.title("Monte-carlo simulation\n estimated total revenue TruCol company")
 
         # Export/save plot
         # plt.show()
@@ -224,7 +263,7 @@ class Model_top_down:
         plt.xlabel("Summed Squared Randomness")
         plt.ylabel("Estimated revenue in $million/year")
         plt.title(
-            "Monte-carlo simulation\n estimated revenue TruCol consultancy per sector"
+            "Monte-carlo simulation\n estimated revenue TruCol company per sector"
         )
 
         # Export/save plot
