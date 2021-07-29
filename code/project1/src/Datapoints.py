@@ -24,8 +24,8 @@ class Datapoints:
         )
         
         # sam and tam factors
-        self.sam_factor=0.03
-        self.tam_factor=0.04
+        self.sam_factor=0.003
+        self.tam_factor=0.004
         print(f'self.profit_dhl_fedex_ups={self.profit_dhl_fedex_ups}')
 
         # Source: https://www.cips.org/supply-management/news/2016/november/logistics-industry-forecast-to-be-worth-155tn-by-2023/

@@ -154,7 +154,7 @@ class Model_top_down:
     ):
         print(f'market_profit_range={market_profit_range}')
         print(f'shared_profit_fraction_range={shared_profit_fraction_range}')
-        exit()
+        
         revenue_estimates = []
         randomness = []
         for i in range(0, N):
