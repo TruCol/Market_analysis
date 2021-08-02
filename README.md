@@ -6,6 +6,7 @@ Our latest presentation of our market analysis (pdf) is visible [here](https://g
 
 ## Usage: do once
 Download/clone this repository.
+
 0. If you don't have pip: open Anaconda prompt and browse to the directory of this readme:
 ```
 cd /home/<your path to the repository folder>/
@@ -20,7 +21,7 @@ conda env create --file environment.yml
 
 3. Activate the conda environment you created:
 ```
-conda activate example_env
+conda activate market_analysis
 ```
 
 ## Usage: do every run:
