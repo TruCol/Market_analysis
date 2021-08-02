@@ -2,7 +2,7 @@
 
 Hi, this is a our preliminary parameterised market analysis for the TruCol company. By sharing our model we hope to be able to provide more insight in our analysis and to improve its accuracy based on the provided feedback. This repository enables you to automatically updates your pdf report every time you run your code. It also syncs with Overleaf so you can do your typing there if you wish. 
 
-Our latest presentation of our market analysis (pdf) is visible [here] (https://github.com/TruCol/Market_analysis/blob/main/latex/project1/main.pdf)(refresh page once).
+Our latest presentation of our market analysis (pdf) is visible [here](https://github.com/TruCol/Market_analysis/blob/main/latex/project1/main.pdf) (refresh page once).
 
 ## Usage: do once
 Download/clone this repository.
