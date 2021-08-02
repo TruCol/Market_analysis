@@ -48,7 +48,7 @@ class Datapoints:
 
         # Estimate based on analogy where a good constraint modeller
         # can reach significant gains in algorithmic efficiency of solution.
-        self.profit_gain_by_trucol_protocol_consultancy = 0.002
+        self.profit_gain_by_trucol_protocol_company = 0.002
         # Conservative estimate based on a max of 1.00, for companies
         # that intend to improve algorithmic efficiency without increasing profit.
         self.fraction_of_profit_shared_with_trucol = 0.01

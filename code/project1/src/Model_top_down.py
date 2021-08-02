@@ -47,7 +47,7 @@ class Model_top_down:
     def estimate_revenue(self):
         revenue_logistics, randomness_logistics = self.estimate_logistics_revenue(
             self.nr_simulations,
-            self.dp.profit_gain_by_trucol_protocol_consultancy,
+            self.dp.profit_gain_by_trucol_protocol_company,
             self.dp.logistics_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
             self.dp.sam_factor,
@@ -58,7 +58,7 @@ class Model_top_down:
         # algo
         revenue_algo_trading, randomness_algo_trading = self.estimate_logistics_revenue(
             self.nr_simulations,
-            self.dp.profit_gain_by_trucol_protocol_consultancy,
+            self.dp.profit_gain_by_trucol_protocol_company,
             self.dp.algo_trading_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
             self.dp.sam_factor,
@@ -72,7 +72,7 @@ class Model_top_down:
             randomness_material_sciences,
         ) = self.estimate_logistics_revenue(
             self.nr_simulations,
-            self.dp.profit_gain_by_trucol_protocol_consultancy,
+            self.dp.profit_gain_by_trucol_protocol_company,
             self.dp.material_sciences_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
             self.dp.sam_factor,
@@ -89,7 +89,7 @@ class Model_top_down:
             randomness_pharmaceutics,
         ) = self.estimate_logistics_revenue(
             self.nr_simulations,
-            self.dp.profit_gain_by_trucol_protocol_consultancy,
+            self.dp.profit_gain_by_trucol_protocol_company,
             self.dp.pharmaceutics_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
             self.dp.sam_factor,
@@ -104,7 +104,7 @@ class Model_top_down:
             randomness_telecommunications,
         ) = self.estimate_logistics_revenue(
             self.nr_simulations,
-            self.dp.profit_gain_by_trucol_protocol_consultancy,
+            self.dp.profit_gain_by_trucol_protocol_company,
             self.dp.telecommunications_market_profit,
             self.dp.fraction_of_profit_shared_with_trucol,
             self.dp.sam_factor,
