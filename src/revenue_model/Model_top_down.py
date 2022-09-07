@@ -33,9 +33,10 @@ class Model_top_down:
         :param x_series:
         """
         summed_series = []
-        for i in enumerate(x_series[0]):
+        for i, _ in enumerate(x_series[0]):
             summed = 0
-            for j in enumerate(x_series):
+            for j, _ in enumerate(x_series):
+                # pylint: disable=R1736
                 summed = summed + x_series[j][i]
 
             summed_series.append(summed)
@@ -50,9 +51,10 @@ class Model_top_down:
 
         """
         summed_series = []
-        for i in enumerate(series[0]):
+        for i, _ in enumerate(series[0]):
             summed = 0
-            for j in enumerate(series):
+            # pylint: disable=R1736
+            for j, _ in enumerate(series):
                 summed = summed + series[j][i]
             summed_series.append(summed / len(series))
         return summed_series

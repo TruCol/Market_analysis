@@ -47,10 +47,10 @@
 \def\filename{main}
 
 % Specify what types of appendices are included in file.
-\def\appendixtypes{no_code}
+%\def\appendixtypes{no_code}
 %\def\appendixtypes{project_code_only}
 %\def\appendixtypes{export_code}
-%\def\appendixtypes{project_and_export_code}
+\def\appendixtypes{project_and_export_code}
 
 
 
@@ -246,9 +246,9 @@ showstringspaces=false            %
 \fi
 
 % Include bibliography
-%\bibliographystyle{plain} %plain style
-%\bibliography{references}
-%\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain} %plain style
+\bibliography{references_market_analysis}
+\addcontentsline{toc}{chapter}{Bibliography}
 
 % Include appendices
 \ifnum\pdfstrcmp{no_code}{\appendixtypes}=0
@@ -308,10 +308,6 @@ showstringspaces=false            %
     \fi
   \end{appendices}
 \fi
-
-\bibliographystyle{plain} %plain style
-\bibliography{references_market_analysis}
-\addcontentsline{toc}{chapter}{Bibliography}
 
 
 \end{document}
