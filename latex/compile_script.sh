@@ -266,8 +266,8 @@ do
 
 	# Copy references.bib file into output directory
 	assert_file_exists "../references.bib"
-	cp ../references.bib $OUTPUT_PATH/references.bib
-	assert_file_exists "$OUTPUT_PATH/references.bib"
+	cp ../references_market_analysis.bib $OUTPUT_PATH/references_market_analysis.bib
+	assert_file_exists "$OUTPUT_PATH/references_market_analysis.bib"
 
 	# Copy bst file into output directory (for bibliography)
 	#assert_file_exists "../IEEEtran.bst"
