@@ -114,8 +114,8 @@ class Datapoints:
 
     def assume_profit_margins(self):
 
-        # Assume the profit margin in the algorithmic trading market equals that
-        # of the logistics market
+        # Assume the profit margin in the algorithmic trading market equals
+        # that of the logistics market "
         self.algo_trading_market_profit_margin = (
             self.logistics_market_profit_margin
         )
