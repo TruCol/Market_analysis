@@ -1,0 +1,41 @@
+% Source: http://www.plantuml.com/plantuml/uml/XPFDZjGm48JlUOfw0InczWUO0rgO5O8ROj7UFKbdfhN-YTnEfBmzCOco9juHfoHs-dDNbVj1eWwnjwRgfYVNt6aNSRneTeRTo_ElRvMkem_uOhYcvVshFrLLe1P-e6K71-mK7gapVhGq8PuwxyG77BsBOIexe3EaXI3U38HuOK7KyeBM1rXILLLDMBpxlFBs2cb5Qkq4ik3g1IVGha7Bhf69HSN-n9iv4p1H9jxDpAD1crv74hIaXKziE8xmRO58fOzKSqE2w547qf6Wau0-idUP1Obxm6rkmBJMkpXc-YyK22omuufGXUWxjIr4zDVDD1HX2Ltm0pTvSxd-F4qSSA-kyyuyK0AAjuIWNUEj8n6LQTtGFYZylX0QgYcn30iry1FKaE1CZiBisWn3poxkx-x1BiNs2aEYLLKEpstvg3Q_ldR-VROrxtQJ_G6V2ibPORpaKl43Pn_H1c__FL8LUU_UgpBbexTT7qdM973IVornsI5bxhjToLf2MM_ivkQK0xX_I-Op1MxvlmqLuxAxUOlsKu-2f-saf1aUvdEQgvSxCM_LyX4e1gQ11ATPzTgTrQxNnepL0xccj-OF
+
+@startuml
+actor Alice
+collections  "=Sponsor Contract\n----\n- Test specification\n- Expiration date\n- Reward size"  as sponsorcontract #99FF99
+participant "=Chainlink Verifiable Random Function\n----\nReturns random integer\nto get random instances\nto verify solution." as ChainlinkVRF #ffcccb
+participant "=Bounty Hunter Contract\n----\n- Solution\n- Evaluation stake" as bountyhuntercontract #97c0fe
+actor Bob
+
+Alice -> sponsorcontract : 1. Deployment Sponsor Contract:\nplease solve this task for me.
+
+Bob -> sponsorcontract : 2. Bob scans blockchain for sponsor contracts and finds the sponsor contract.
+"sponsorcontract"->"Bob": 3. Bob reads $4200 bounty for solution that computes square root of integer, due Wednesday 13:59 AoE.
+
+Bob <- Bob  : 4. Bob evaluates feasibility\nof sponsor contract.
+Bob <- Bob  : 5. Bob decides to\ncreate a solution.
+
+Bob -> bountyhuntercontract : 6. Deployment Bounty Contract:\nhere is my solution.
+
+bountyhuntercontract -> sponsorcontract : 7. Bounty Contract to Sponsor Contract: please let me provide a solution.
+
+sponsorcontract -> ChainlinkVRF : 8. Sponsor Contract: please give me some randomness.
+
+ChainlinkVRF -> ChainlinkVRF : 9. The decentralised oracles generate\na random uint256 in the Chainlink VRF
+
+ChainlinkVRF -> sponsorcontract : 10. Chainlink VRF Contract: Here is randomness.
+
+sponsorcontract -> sponsorcontract : 11. The sponsor contract converts\n the random value into a test instance.
+
+sponsorcontract -> bountyhuntercontract : 12. Sponsor Contract: Here are the random instances I want you to solve.
+
+bountyhuntercontract -> bountyhuntercontract : 13. Bounty Contract:\nComputes solution based\n on randomness.
+
+bountyhuntercontract -> sponsorcontract : 14. Bounty Contract: please evaluate my solution.
+
+sponsorcontract -> sponsorcontract : 15. Sponsor Contract: Verifies solution based on randomness.
+
+sponsorcontract -> bountyhuntercontract  : 16. Sponsor Contract: Pays Solution contract for verified solution.
+
+bountyhuntercontract -> Alice  : 17. Alice retrieves bounty solution manually
+@enduml
