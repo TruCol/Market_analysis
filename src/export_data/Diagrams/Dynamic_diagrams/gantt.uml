@@ -1,0 +1,142 @@
+@startgantt
+project starts the 2022/10-01
+saturday are closed
+sunday are closed
+skinparam classFontSize 100
+
+    <style>
+    ganttDiagram {
+    milestone {
+
+        FontColor blue
+        FontSize 100
+        FontStyle italic
+        BackGroundColor red
+        LineColor yellow
+
+    }
+}
+</style>
+
+[<size:30>Complete CI deployment - complete_ci_deployment] as [complete_ci_deployment] happens  2022/10-01
+
+[<size:30>Develop protocol] as [0] lasts 120 days
+[<size:30>On-chain: Solidty+VRF] as [0_0] lasts 60 days
+[<size:30>Git integration: Tellor] as [0_1] lasts 90 days
+[<size:30>Git integration: Chainlink] as [0_2] lasts 90 days
+[<size:30>Support all languages - support_all_languages] as [support_all_languages] happens at [0_2]'s end
+[<size:30>Alternative Chains] as [0_3] lasts 90 days
+[<size:30>(Decentralised) Continuous integration] as [0_2_0] lasts 30 days
+[<size:30>Security & Robustness] as [0_2_1] lasts 60 days
+
+[<size:30>Platform & ecosystem] as [1] lasts 120 days
+[<size:30>Website] as [1_0] lasts 50 days
+[<size:30>API] as [1_0_0] lasts 50 days
+[<size:30>GUI] as [1_0_1] lasts 50 days
+[<size:30>Forum] as [1_0_2] lasts 10 days
+[<size:30>Marketing platform] as [1_1] lasts 30 days
+[<size:30>Subsidize bounties] as [1_2] lasts 10 days
+[<size:30>Platform Planning Buffer] as [1_3] lasts 30 days
+[<size:30>First Customer Usage - first_customer_usage] as [first_customer_usage] happens  2023-03-17
+
+[<size:30>Launch company] as [2] lasts 150 days
+[<size:30>Qualitative partner research] as [2_0] lasts 20 days
+[<size:30>Establish organisation] as [2_1] lasts 80 days
+[<size:30>Auditing] as [2_1_0] lasts 10 days
+[<size:30>Hiring] as [2_1_1] lasts 20 days
+[<size:30>Administration] as [2_1_2] lasts 10 days
+[<size:30>Legal] as [2_1_3] lasts 20 days
+[<size:30>Financial] as [2_1_4] lasts 20 days
+[<size:30>Marketing] as [2_2] lasts 30 days
+[<size:30>Organisation Planning Buffer ] as [2_3] lasts 20 days
+[<size:30>Operational Break Even - operational_break_even] as [operational_break_even] happens  2023-06-09
+
+[0_0] starts at [0]'s start
+[0_1] starts at [0]'s start
+[0_2] starts at [0]'s start
+[0_3] starts at [0]'s start
+[0_2_0] starts at [0_3]'s end
+[0_2_1] starts at [0_2_0]'s end
+[1] starts at [0]'s start
+
+[1_0] starts at [1]'s start
+[1_1] starts at [1_0]'s end
+[1_2] starts at [1_1]'s end
+[1_3] starts at [1_2]'s end
+[1_0_0] starts at [1_0]'s start
+[1_0_1] starts at [0]'s start
+[1_0_2] starts at [0]'s start
+[2] starts at [0]'s start
+
+[2_0] starts at [2]'s start
+[2_1] starts at [2_0]'s end
+[2_2] starts at [2_1]'s end
+[2_3] starts at [2_2]'s end
+[2_1_0] starts at [2_1]'s start
+[2_1_1] starts at [2_1_0]'s end
+[2_1_2] starts at [2_1_1]'s end
+[2_1_3] starts at [2_1_2]'s end
+[2_1_4] starts at [2_1_3]'s end
+
+[0]  is colored in Green
+[0_0]  is colored in Green
+[0_1]  is colored in Green
+[0_2]  is colored in Green
+[0_3]  is colored in Green
+[0_2_0]  is colored in Green
+[0_2_1]  is colored in Green
+
+
+[1]  is colored in DarkOrchid
+[1_0]  is colored in DarkOrchid
+[1_0_0]  is colored in DarkOrchid
+[1_0_1]  is colored in DarkOrchid
+[1_0_2]  is colored in DarkOrchid
+[1_1]  is colored in DarkOrchid
+[1_2]  is colored in DarkOrchid
+[1_3]  is colored in DarkOrchid
+
+
+[2]  is colored in Yellow
+[2_0]  is colored in Yellow
+[2_1]  is colored in Yellow
+[2_1_0]  is colored in Yellow
+[2_1_1]  is colored in Yellow
+[2_1_2]  is colored in Yellow
+[2_1_3]  is colored in Yellow
+[2_1_4]  is colored in Yellow
+[2_2]  is colored in Yellow
+[2_3]  is colored in Yellow
+
+
+'[Develop protocol]  takes: 120[days] equating to:960[hours] and costs:0 per hour, yielding activity costs:0 Euros.
+'[On-chain: Solidty+VRF]  takes: 60[days] equating to:480[hours] and costs:76 per hour, yielding activity costs:36480 Euros.
+'[Git integration: Tellor]  takes: 90[days] equating to:720[hours] and costs:76 per hour, yielding activity costs:54720 Euros.
+'[Git integration: Chainlink]  takes: 90[days] equating to:720[hours] and costs:76 per hour, yielding activity costs:54720 Euros.
+'[Alternative Chains]  takes: 90[days] equating to:720[hours] and costs:76 per hour, yielding activity costs:54720 Euros.
+'[(Decentralised) Continuous integration]  takes: 30[days] equating to:240[hours] and costs:76 per hour, yielding activity costs:18240 Euros.
+'[Security & Robustness]  takes: 60[days] equating to:480[hours] and costs:76 per hour, yielding activity costs:36480 Euros.
+
+
+'[Platform & ecosystem]  takes: 120[days] equating to:960[hours] and costs:41 per hour, yielding activity costs:39360 Euros.
+'[Website]  takes: 50[days] equating to:400[hours] and costs:41 per hour, yielding activity costs:16400 Euros.
+'[API]  takes: 50[days] equating to:400[hours] and costs:41 per hour, yielding activity costs:16400 Euros.
+'[GUI]  takes: 50[days] equating to:400[hours] and costs:41 per hour, yielding activity costs:16400 Euros.
+'[Forum]  takes: 10[days] equating to:80[hours] and costs:41 per hour, yielding activity costs:3280 Euros.
+'[Marketing platform]  takes: 30[days] equating to:240[hours] and costs:41 per hour, yielding activity costs:9840 Euros.
+'[Subsidize bounties]  takes: 10[days] equating to:80[hours] and costs:41 per hour, yielding activity costs:3280 Euros.
+'[Platform Planning Buffer]  takes: 30[days] equating to:240[hours] and costs:41 per hour, yielding activity costs:9840 Euros.
+
+
+'[Launch company]  takes: 150[days] equating to:1200[hours] and costs:36 per hour, yielding activity costs:43200 Euros.
+'[Qualitative partner research]  takes: 20[days] equating to:160[hours] and costs:36 per hour, yielding activity costs:5760 Euros.
+'[Establish organisation]  takes: 80[days] equating to:640[hours] and costs:36 per hour, yielding activity costs:23040 Euros.
+'[Auditing]  takes: 10[days] equating to:80[hours] and costs:36 per hour, yielding activity costs:2880 Euros.
+'[Hiring]  takes: 20[days] equating to:160[hours] and costs:36 per hour, yielding activity costs:5760 Euros.
+'[Administration]  takes: 10[days] equating to:80[hours] and costs:36 per hour, yielding activity costs:2880 Euros.
+'[Legal]  takes: 20[days] equating to:160[hours] and costs:36 per hour, yielding activity costs:5760 Euros.
+'[Financial]  takes: 20[days] equating to:160[hours] and costs:36 per hour, yielding activity costs:5760 Euros.
+'[Marketing]  takes: 30[days] equating to:240[hours] and costs:36 per hour, yielding activity costs:8640 Euros.
+'[Organisation Planning Buffer ]  takes: 20[days] equating to:160[hours] and costs:36 per hour, yielding activity costs:5760 Euros.
+
+@endgantt
