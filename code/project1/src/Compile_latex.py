@@ -2,8 +2,6 @@
 
 import os
 import shutil
-import nbformat
-from nbconvert.preprocessors import ExecutePreprocessor
 
 
 class Compile_latex:
@@ -20,14 +18,18 @@ class Compile_latex:
 
     def clean_up_after_compilation(self, latex_filename):
         latex_filename_without_extention = latex_filename[:-4]
-        print(f"latex_filename_without_extention={latex_filename_without_extention}")
+        print(
+            f"latex_filename_without_extention={latex_filename_without_extention}"
+        )
         self.delete_file_if_exists(f"{latex_filename_without_extention}.aux")
         self.delete_file_if_exists(f"{latex_filename_without_extention}.log")
         self.delete_file_if_exists(f"texput.log")
 
     def move_pdf_into_latex_dir(self, relative_dir, latex_filename):
         pdf_filename = f"{latex_filename[:-4]}.pdf"
-        destination = f"{self.get_script_dir()}/../../../{relative_dir}{pdf_filename}"
+        destination = (
+            f"{self.get_script_dir()}/../../../{relative_dir}{pdf_filename}"
+        )
 
         try:
             shutil.move(pdf_filename, destination)
@@ -43,7 +45,8 @@ class Compile_latex:
             )
 
     def get_script_dir(self):
-        """returns the directory of this script regardles of from which level the code is executed"""
+        """returns the directory of this script regardles of from which level
+        the code is executed."""
         return os.path.dirname(__file__)
 
 

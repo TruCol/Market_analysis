@@ -1,14 +1,14 @@
-import unittest
 import os
+import unittest
+
 from ..src.Main import Main
-import testbook
 
 
 class Test_main(unittest.TestCase):
 
     # Initialize test object
     def __init__(self, *args, **kwargs):
-        super(Test_main, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.script_dir = self.get_script_dir()
 
         self.main = Main()

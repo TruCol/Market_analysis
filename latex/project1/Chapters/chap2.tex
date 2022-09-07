@@ -5,25 +5,25 @@
 % What is the Market Trajectory
 
 
-To use the Top Down Model, \cref{subsec:total_addressable_market} describes the TAM in which the TruCol company will operate. To this end, \cref{subsubsec:tam_logistics} discusses the market size of the logistics market, and the profit within that market. Due to time-constraints and lack of data, some datapoints and assumptions of the logistics market are applied to other sectors such as the automated trading market and pharmaceutics market in \cref{subsubsec:additional_markets} to get some insight in their respective market sizes. Furthermore, \cref{subsubsec:emerging_markets} provides some qualitative insight in the potential future markets that are highly suited for the TruCol protocol. These emerging markets are accordingly expected to be relevant markets to address in the near future. 
+To use the Top Down Model, \cref{subsec:total_addressable_market} describes the TAM in which the TruCol company will operate. To this end, \cref{subsubsec:tam_logistics} discusses the market size of the logistics market, and the profit within that market. Due to time-constraints and lack of data, some datapoints and assumptions of the logistics market are applied to other sectors such as the automated trading market and pharmaceutics market in \cref{subsubsec:additional_markets} to get some insight in their respective market sizes. Furthermore, \cref{subsubsec:emerging_markets} provides some qualitative insight in the potential future markets that are highly suited for the TruCol protocol. These emerging markets are accordingly expected to be relevant markets to address in the near future.
 
 \subsection{Total Addressable Market}\label{subsec:total_addressable_market}
 To compute the TAM, SAM and SOM, some form of market definition can be used. To this end, it is considered valuable to specify what the TruCol company does, where it adds value and how it does that. Furthermore, since these three aforementioned estimates pertain to a potential future, the potential, yet deemed feasible, activities of the TruCol company are included.
 \\
-The TruCol company provides advice and support to companies on how they can get the most out of the TruCol protocol. To understand this, the following assumptions are shared. Under these assumptions, one can conclude that an economically rational company would try to off-load as much of their required tasks into the TruCol protocol as it would minimise their operational costs and/or improve algorithmic efficiency of their solutions. 
+The TruCol company provides advice and support to companies on how they can get the most out of the TruCol protocol. To understand this, the following assumptions are shared. Under these assumptions, one can conclude that an economically rational company would try to off-load as much of their required tasks into the TruCol protocol as it would minimise their operational costs and/or improve algorithmic efficiency of their solutions.
 
 \begin{itemize}
 	\item \textbf{asu-0:} Solutions to tasks that are completed using the TruCol protocol are deterministically verifiable.
 	\item \textbf{asu-1:} Solutions to tasks that are completed using the TruCol protocol are of sufficient quality.
 	\item \textbf{asu-2:} Tasks that are completed using the TruCol protocol can be solved for the lowest cost price that is currently available in this world.
 	\item \textbf{asu-3:} No personnel needs to be attracted, screened, hired nor fired for tasks that are completed using the TruCol protocol.
-	\item \textbf{asu-4:} Companies can benefit from public particular solutions to their task specifications. 
+	\item \textbf{asu-4:} Companies can benefit from public particular solutions to their task specifications.
 	\item \textbf{asu-5:} By sampling from a bigger talent pool (this world), the average performance of the solutions will be better than what is produced by the in-house talent pool, or, for equal solution performance, a faster rate of development can be obtained on average for an equal or lower price.
 \end{itemize}
 
 
 
-We help companies identify the tasks for which they can use the TruCol protocol, and we assist them in writing safe test specifications that are not easily hackable. This implies that under the given set of assumptions, the TAM for the TruCol protocol can be defined as the total costs that the companies (and consumers) in this world are willing to pay for assistance on using the TruCol protocol. 
+We help companies identify the tasks for which they can use the TruCol protocol, and we assist them in writing safe test specifications that are not easily hackable. This implies that under the given set of assumptions, the TAM for the TruCol protocol can be defined as the total costs that the companies (and consumers) in this world are willing to pay for assistance on using the TruCol protocol.
 
 \subsubsection{TruCol Total Addressable Logistics Market}\label{subsubsec:tam_logistics}
 
@@ -43,7 +43,7 @@ For DHL one can find on pdf page 37/170 in \cite{dhl_2019_annual_report} that th
 
 For UPS one can find on pdf page 4/257 in \cite{ups_2020_annual_report} that the annual unadjusted operating profit for UPS in 2020 was 7.7 billion. Note, \cite{ups_q21_earnings_call} says UPS had a net operating profit of 1.1 billion in Q1 of 2020, implying they had to almost double their average profit in the remaining three quarters of 2020 to be consistent with an annual 7.7 billion.
 
-For FedEx the net income as reported for 2020 has been 1.29 \$ billion in pdf page 2/17 \cite{fedex_2020_annual_report}. 
+For FedEx the net income as reported for 2020 has been 1.29 \$ billion in pdf page 2/17 \cite{fedex_2020_annual_report}.
 
 \begin{itemize}
 \item \textbf{Asu-9:} The net income as reported (GAAP) by FedEx can be interpreted as the profit by FedEx.
@@ -56,7 +56,7 @@ Next, the claim that fragmentation of the global market implied in 2016 that Deu
 	\item \textbf{Asu-11:} The profit in the remaining 85\% of the global logistics market has the same average yearly profitability per percent market share as the combination of DHL, UPS and FedEx.
 \end{itemize}
 
-Based on assumptions 1-11 one could estimate an upperbound of 
+Based on assumptions 1-11 one could estimate an upperbound of
 \begin{equation}
 	\begin{split}
 		net-profit_{DHL+UPS+FedEx}=4.1+7.7+1.29=13.09 billion\\
@@ -72,7 +72,7 @@ Hence, if each of those companies in the logistics sector could increase their p
 \subsubsection{Additional addressable markets}\label{subsubsec:additional_markets}
 Since the TruCol company is market agnostic, we also seek to assist in algorithmic optimisation outside the logistics market. Several markets are worth mentioning in particular as we expect them to either heavily rely on algorithmic optimisations, or because they are particularly suited for the TruCol protocol.
 \begin{itemize}
-	\item \textbf{(Automated) trading} In the highly competitive market of (automated) trading, algorithmic optimisations are key to making successful trades. 
+	\item \textbf{(Automated) trading} In the highly competitive market of (automated) trading, algorithmic optimisations are key to making successful trades.
 	\item \textbf{Space Sector} The space engineering sector already has a relatively high test driven development\cite{todo}, this lowers the adoption costs of the TruCol protocol relative to most industries. Furthermore, space applications are heavily mass constrained, which generally makes them highly energy constrained as well. These energy constraints emphasise the importance of algorithmic optimisations, for example in telecommunications satellites and swarm robots.
 	\item \textbf{Innovative Materials Research} The domain of material science has been adopting algorithmic search strategies to find new materials  \cite{allahyari2020coevolutionary}.
 	\item \textbf{Pharmaceutical Industry} Another example of a large market that has been shifting to adopt algorithmic search strategies to find new medicines.

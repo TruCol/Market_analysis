@@ -7,7 +7,7 @@ dist: bionic
 branches:
   only:
   - main
-  
+
 install:
   - sudo apt-get update
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then

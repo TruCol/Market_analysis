@@ -9,6 +9,12 @@
 ### For a single line, use:
 ### plt_tex.plotSingleLine(plt_tex,range(0, len(dataseries)),dataseries,"x-axis label [units]","y-axis label [units]",lineLabel,"3b",4,11)
 
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import lines
+
 ### You can also plot a table directly into latex, see example_create_a_table(..)
 ###
 ### Then put it in latex with for example:
@@ -20,11 +26,7 @@
 ###        \input{latex/project3/tables/q2.txt}
 ###    \end{tabular}
 ###\end{table}
-import random
-from matplotlib import lines
-import matplotlib.pyplot as plt
-import numpy as np
-import os
+
 
 
 class Plot_to_tex:
@@ -63,7 +65,15 @@ class Plot_to_tex:
 
     # plot graphs
     def plotMultipleLines(
-        self, x, y_series, x_label, y_label, label, filename, legendPosition, project_nr
+        self,
+        x,
+        y_series,
+        x_label,
+        y_label,
+        label,
+        filename,
+        legendPosition,
+        project_nr,
     ):
         fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -105,8 +115,9 @@ class Plot_to_tex:
     # Generate random line colours
     # Source: https://stackoverflow.com/questions/14720331/how-to-generate-random-colors-in-matplotlib
     def get_cmap(n, name="hsv"):
-        """Returns a function that maps each index in 0, 1, ..., n-1 to a distinct
-        RGB color; the keyword argument name must be a standard mpl colormap name."""
+        """Returns a function that maps each index in 0, 1, ..., n-1 to a
+        distinct RGB color; the keyword argument name must be a standard mpl
+        colormap name."""
         return plt.cm.get_cmap(name, n)
 
     def generateLineTypes(y_series):
@@ -143,7 +154,7 @@ class Plot_to_tex:
             table_matrix,
             delimiter=" & ",
             fmt=format,
-            newline="  \\\\ \hline \n",
+            newline="  \\\\ \\hline \n",
         )
 
     # replace this with your own table creation and then pass it to put_table_in_tex(..)
@@ -164,7 +175,8 @@ class Plot_to_tex:
         self.put_table_in_tex(table_matrix, table_name, project_nr)
 
     def get_script_dir(self):
-        """returns the directory of this script regardles of from which level the code is executed"""
+        """returns the directory of this script regardles of from which level
+        the code is executed."""
         return os.path.dirname(__file__)
 
 

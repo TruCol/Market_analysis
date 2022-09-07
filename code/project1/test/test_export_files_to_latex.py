@@ -1,15 +1,15 @@
-import unittest
 import os
-from ..src.Main import Main
+import unittest
+
 from ..src.Export_code_to_latex import *
-import testbook
+from ..src.Main import Main
 
 
 class Test_main(unittest.TestCase):
 
     # Initialize test object
     def __init__(self, *args, **kwargs):
-        super(Test_main, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.script_dir = self.get_script_dir()
 
         self.main = Main()
@@ -32,8 +32,8 @@ class Test_main(unittest.TestCase):
         ]
         root_dir = "/home/username/Documents/git/Code-LatexReportTemplate/"
         appendix_content = [
-            "\section{Appendix Main.py}\label{app:2}",
-            "\pythonexternal{latex/project1/../../code/project1/src/Main.py}",
+            r"\section{Appendix Main.py}\label{app:2}",
+            r"\pythonexternal{latex/project1/../../code/project1/src/Main.py}",
         ]
         project_nr = 1
         result = check_if_appendix_contains_file(
