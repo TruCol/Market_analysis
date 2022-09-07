@@ -1,7 +1,10 @@
-# The bottom up model that computes the TAM and TSM
+"""The bottom up model that computes the TAM and TSM."""
 
 
-class Model_bottom_up:
+# pylint: disable=R0903
+class Model_bottum_up:
+    """Placeholder for model."""
+
     def __init__(self):
         pass
 

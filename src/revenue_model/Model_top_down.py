@@ -1,16 +1,19 @@
-# The bottom up model that computes the TAM and TSM
+"""The bottom up model that computes the TAM and TSM."""
 
 import os
 
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 import numpy as np
+from matplotlib import ticker
 
 from src.revenue_model.Datapoints import Datapoints
 
 
 class Model_top_down:
+    """Applies the assumptions of the accompanying market analysis pdf to
+    generate the expected revenue in the form of a Monte-Carlo simulation."""
+
     def __init__(self):
         self.nr_simulations = 300
         self.dp = Datapoints()
@@ -23,25 +26,40 @@ class Model_top_down:
         self.plot_data(x, y)
 
     def sum_revenues(self, x_series):
+        """Computes the summed revenue.
+
+        # TODO: improve comment.
+
+        :param x_series:
+        """
         summed_series = []
-        for i in range(0, len(x_series[0])):
+        for i in enumerate(x_series[0]):
             summed = 0
-            for j in range(0, len(x_series)):
+            for j in enumerate(x_series):
                 summed = summed + x_series[j][i]
 
             summed_series.append(summed)
         return summed_series
 
     def avg_randomness(self, series):
+        """Returns the summed value of a series.
+        TODO: make explicit why it is called avg_randomness.
+        (See:sum_revenues)
+
+        :param series:
+
+        """
         summed_series = []
-        for i in range(0, len(series[0])):
+        for i in enumerate(series[0]):
             summed = 0
-            for j in range(0, len(series)):
+            for j in enumerate(series):
                 summed = summed + series[j][i]
             summed_series.append(summed / len(series))
         return summed_series
 
     def estimate_revenue(self):
+        """Estimates the TruCol revenue based on the assumptions stated in the
+        accompanying market analysis pdf."""
         (
             revenue_logistics,
             randomness_logistics,
@@ -143,6 +161,8 @@ class Model_top_down:
         ]
         return x_series, y_series
 
+    # pylint: disable=R0913
+    # pylint: disable=R0914
     def estimate_logistics_revenue(
         self,
         N,
@@ -152,12 +172,21 @@ class Model_top_down:
         sam_factor,
         tam_factor,
     ):
+        """Estimates the TruCol revenue within the logistics sector.
+
+        :param N: param gain_range:
+        :param market_profit_range: param shared_profit_fraction_range:
+        :param sam_factor: param tam_factor:
+        :param gain_range:
+        :param shared_profit_fraction_range:
+        :param tam_factor:
+        """
         print(f"market_profit_range={market_profit_range}")
         print(f"shared_profit_fraction_range={shared_profit_fraction_range}")
 
         revenue_estimates = []
         randomness = []
-        for i in range(0, N):
+        for _ in range(0, N):
             # TODO: change to get the range as specified in datapoints per
             # parameter
             rand_market_profit = float(
@@ -203,29 +232,42 @@ class Model_top_down:
         return revenue_estimates, randomness
 
     def estimate_pharmaceutics_revenue(self):
+        """Returns the pharmaceutics revenue as 0 to only focus on one
+        sector."""
         return 0
 
     def estimate_algo_trading_revenue(self):
+        """Returns the algorithmic trading revenue as 0 to only focus on one
+        sector."""
         return 0
 
     def estimate_material_sciences_revenue(self):
+        """Returns the material sciences revenue as 0 to only focus on one
+        sector."""
         return 0
 
     def estimate_telecommunications_revenue(self):
+        """Returns the telecomunications revenue as 0 to only focus on one
+        sector."""
         return 0
 
     def plot_data(self, x, y):
+        """Plots some x and y coordinates in scatterplot.
+
+        :param x: param y:
+        :param y:
+        """
         N = self.nr_simulations
 
         # Random colour for points, vector of length N
         colors = np.ones(N)
 
         # Plot figure
-        fig, ax = plt.subplots()
+        _, ax = plt.subplots()
 
         # Set y-axis scale to millions
         scale_y = 1e6
-        ticks_y = ticker.FuncFormatter(lambda x, pos: f"{x / scale_y:g}")
+        ticks_y = ticker.FuncFormatter(lambda x, _: f"{x / scale_y:g}")
         ax.yaxis.set_major_formatter(ticks_y)
 
         # Specify units of y-axis
@@ -249,19 +291,25 @@ class Model_top_down:
         )
 
     def plot_data_series(self, x_series, y_series):
+        """Creates a scatter plot based on the incoming x and y coordinate
+        series. A series represents a datatype.
+
+        :param x_series: param y_series:
+        :param y_series:
+        """
         x = [item for sublist in x_series for item in sublist]
         y = [item for sublist in y_series for item in sublist]
         len(x)
 
         # random colour for points, vector of length N
-        colors, legend_colors = self.get_colors(x_series, y_series)
+        colors, _ = self.get_colors(x_series)
 
         # Plot figure
-        fig, ax = plt.subplots()
+        _, ax = plt.subplots()
 
         # Set y-axis scale to millions
         scale_y = 1e6
-        ticks_y = ticker.FuncFormatter(lambda x, pos: f"{x / scale_y:g}")
+        ticks_y = ticker.FuncFormatter(lambda x, _: f"{x / scale_y:g}")
         ax.yaxis.set_major_formatter(ticks_y)
 
         # Specify units of y-axis
@@ -308,7 +356,13 @@ class Model_top_down:
             + ".png"
         )
 
-    def get_colors(self, x_series, y_series):
+    def get_colors(self, x_series):
+        """Returns the colours for the different data series that are being
+        plotted.
+
+        :param x_series: param y_series:
+        :param y_series:
+        """
 
         # Create list to store colors
         color_arr = []
@@ -317,15 +371,18 @@ class Model_top_down:
         colors = ["yellow", "green", "cyan", "blue", "magenta"]
 
         # Flatten the lists per sector into a single list
-        [item for sublist in x_series for item in sublist]
+        # [item for sublist in x_series for item in sublist]
 
         # Give each datapoint of a sector the same colour
-        for i in range(0, len(x_series)):
-            for elem in range(0, len(x_series[i])):
+        for i, _ in enumerate(x_series):
+            # pylint: disable=R1736
+            for _ in range(0, len(x_series[i])):
+                # pylint: disable=R1736
                 color_arr.append(colors[i])
         return color_arr, colors
 
     def get_normal_dist(self):
+        """Gets a normal distribution and plots it."""
         # Creating a series of data of in range of 1-50.
         x = np.linspace(1, 50, 200)
 
@@ -342,10 +399,19 @@ class Model_top_down:
         plt.ylabel("Probability Density")
 
     def normal_dist(self, x, mean, sd):
+        """Generates a normal distribution.
+
+        :param x: param mean:
+        :param sd:
+        :param mean:
+        """
         prob_density = (np.pi * sd) * np.exp(-0.5 * ((x - mean) / sd) ** 2)
         return prob_density
 
     def addTwo(self, x):
         """adds two to the incoming integer and returns the result of the
-        computation."""
+        computation.
+
+        :param x:
+        """
         return x + 2

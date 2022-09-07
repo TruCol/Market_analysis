@@ -1,10 +1,12 @@
-# The bottom up model that computes the TAM and TSM
+"""The bottom up model that computes the TAM and TSM."""
 
 
+# pylint: disable=R0902
 class Datapoints:
+    """Initialise the datapoints and compute basic datapoints that can be
+    derived from the datapoints and/or assumptions."""
+
     def __init__(self):
-        """Initialise the datapoints and compute basic datapoints that can be
-        derived from the datapoints and/or assumptions."""
         # Source: https://www.dpdhl.com/content/dam/dpdhl/en/media-center/
         # investors/documents/annual-reports/DPDHL-2019-Annual-Report.pdf
         self.profit_dhl = 4.1 * 10**9  # dollar
@@ -101,18 +103,24 @@ class Datapoints:
         return net_profit_logistics_market
 
     def get_market_profit(self, market_size, profit_margin):
+        """Computes the total market profit."""
         return market_size * profit_margin
 
     def get_market_profit_margin(self, market_size, net_profit):
+        """Computes the profit margin, presumably based on data points."""
         return net_profit / market_size
 
     def compute_profit_margins(self):
+        """Computes the projected profit margin for the TruCol company for the
+        logistics market."""
         # Compute the profit margin based on market size and profit.
         self.logistics_market_profit_margin = self.get_market_profit_margin(
             self.logistics_market_size, self.logistics_market_profit
         )
 
     def assume_profit_margins(self):
+        """Assumes the profit margins for all sectors based on the assumptions
+        in the accompanying market analysis pdf."""
 
         # Assume the profit margin in the algorithmic trading market equals
         # that of the logistics market "

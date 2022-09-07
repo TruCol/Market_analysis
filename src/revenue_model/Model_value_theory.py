@@ -1,7 +1,10 @@
-# The bottom up model that computes the TAM and TSM
+"""The value theory model that computes the TAM and TSM."""
 
 
+# pylint: disable=R0903
 class Model_value_theory:
+    """Placeholder for model."""
+
     def __init__(self):
         pass
 
