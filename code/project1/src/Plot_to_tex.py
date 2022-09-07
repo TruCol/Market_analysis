@@ -28,7 +28,6 @@ from matplotlib import lines
 ###\end{table}
 
 
-
 class Plot_to_tex:
     def __init__(self):
         self.script_dir = self.get_script_dir()
