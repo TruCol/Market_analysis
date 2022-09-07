@@ -10,9 +10,8 @@ after activity X, and make activity Y start at the end of the new
 activity. Then it automatically updates all the tags, for all
 properties, e.g. activity descriptions, colours, order etc.
 """
+from src.Activity import Activity
 from src.export_data.Milestone import Milestone
-
-from .Activity import Activity
 
 
 # pylint: disable=R0914

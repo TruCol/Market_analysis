@@ -1,7 +1,7 @@
 # The bottom up model that computes the TAM and TSM
 
 
-class Model_bottom_up:
+class Model_value_theory:
     def __init__(self):
         pass
 

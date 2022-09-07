@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
 
-from .Datapoints import Datapoints
+from src.revenue_model.Datapoints import Datapoints
 
 
 class Model_top_down:
@@ -197,10 +197,10 @@ class Model_top_down:
             rand_sam_range = sam_factor * rand_sam
             rand_tam_range = tam_factor * rand_tam
 
-            rand_shared_profit_fraction_range = (
-                shared_profit_fraction_range * rand_profit_fraction
-            )
-            # exit()
+            # rand_shared_profit_fraction_range = (
+            #    shared_profit_fraction_range * rand_profit_fraction
+            # )
+
             revenue_estimates.append(
                 rand_market_profit_range
                 * rand_sam_range
@@ -302,7 +302,8 @@ class Model_top_down:
         plt.xlabel("Summed Squared Randomness")
         plt.ylabel("Estimated revenue in $million/year")
         plt.title(
-            "Monte-carlo simulation\n estimated revenue TruCol company per sector"
+            "Monte-carlo simulation\n estimated revenue TruCol company per"
+            + " sector"
         )
 
         # Export/save plot
