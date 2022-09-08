@@ -49,6 +49,7 @@ class Cost_model:
             "Description",
             r"Cost [\euro]",
             "Total Expected Investment Costs",
+            "total_costs_params",
         )
 
     def total_costs_to_dict(self, the_params):

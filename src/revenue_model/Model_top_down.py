@@ -35,7 +35,7 @@ class Model_top_down:
 
         param_dict = model_params | self.dp.datapoints_dict
         export_params_to_latex_params_and_table(
-            param_dict, "latex/Tables/top_down"
+            param_dict, "latex/Tables/top_down", "market_size_params"
         )
 
     def sum_revenues(self, x_series):

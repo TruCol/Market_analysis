@@ -1,5 +1,5 @@
 \begin{longtable}{@{}cp{.7\textwidth}@{}}
-    \caption{Cost Model Parameters in \euro (/hr or absolute, unlessspecified otherwise)\label{table:nonlin}}\\
+    \caption{Cost Model Parameters in \euro (/hr or absolute, unlessspecified otherwise)}\label{tab:market_size_params}\\
     \toprule
     {\bfseries Parameter} & {\bfseries Value} \\ \midrule
     \endfirsthead
@@ -13,12 +13,20 @@
     \endfoot
     \bottomrule
     \endlastfoot
-    nr simulations & 300\\
-    profit dhl & 4099999999.9999995\\
-    profit fedex & 1290000000.0\\
-    profit ups & 7700000000.0\\
-    profit dhl fedex ups & 13090000000.0\\
+    nr simulations & 300.0\\
+    profit dhl billion & 4.099999\\
+    profit dhl & 4.100000e+09\\
+    profit fedex billion & 1.29\\
+    profit fedex & 1.290000e+09\\
+    profit ups billion & 7.7\\
+    profit ups & 7.700000e+09\\
+    profit dhl fedex ups & 1.309000e+10\\
     sam factor & 0.003\\
     tam factor & 0.004\\
     logistics market share dhl fedex ups & 0.15\\
+    logistics market share dhl fedex ups percentage & 15.0\\
+    avg algo optimisation profit percentage & 0.1\\
+    avg algo optimisation profit & 0.001\\
+    TruCol cut on profit percentage & 1.0\\
+    TruCol cut on profit & 0.01\\
 \end{longtable}

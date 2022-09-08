@@ -4,8 +4,9 @@ from pprint import pprint
 from src.export_data.helper_dir_file_edit import overwrite_file
 
 
-def export_params_to_latex_params_and_table(params, subpath):
+def export_params_to_latex_params_and_table(params: dict, subpath, label):
     """Exports the parameters to latex parameters."""
+    apply_scientific_notation(params)
     param_lines = get_latex_param_lines(params)
     print(f"param_lines={param_lines}")
 
@@ -22,7 +23,28 @@ def export_params_to_latex_params_and_table(params, subpath):
             r"Cost Model Parameters in \euro (/hr or absolute, unless"
             + "specified otherwise)"
         ),
+        label=label,
     )
+
+
+def apply_scientific_notation(some_dict):
+    """Makes numbers more readable by applying e notation for too small and too
+    large numbers.
+
+    Also rounds to 6 decimals.
+    """
+    for key, value in some_dict.items():
+        some_dict[key] = truncate(value, 6)
+        # some_dict[key]=format_number(value)
+        if value < 0.00001 or value > 10000:
+            some_dict[key] = f"{value:e}"
+    return some_dict
+
+
+def truncate(n, decimals=0):
+    """Rounds to 6 decimals."""
+    multiplier = 10**decimals
+    return int(n * multiplier) / multiplier
 
 
 def get_latex_param_lines(params):
@@ -62,6 +84,7 @@ def dict_to_latex_table(
     key_header: str,
     value_header: str,
     caption: str,
+    label: str,
 ):
     """Writes a dict to a latex file.
 
@@ -82,7 +105,7 @@ def dict_to_latex_table(
         f.write(
             f"""
 \\begin{{longtable}}{{@{{}}cp{{.7\\textwidth}}@{{}}}}
-    \\caption{{{caption}\\label{{table:nonlin}}}}\\\\
+    \\caption{{{caption}}}\\label{{tab:{label}}}\\\\
     \\toprule
     {{\\bfseries {key_header}}} & {{\\bfseries {value_header}}} \\\\ \\midrule
     \\endfirsthead

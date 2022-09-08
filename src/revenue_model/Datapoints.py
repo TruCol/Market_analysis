@@ -11,17 +11,39 @@ class Datapoints:
     def __init__(self):
         # Source: https://www.dpdhl.com/content/dam/dpdhl/en/media-center/
         # investors/documents/annual-reports/DPDHL-2019-Annual-Report.pdf
-        self.profit_dhl = 4.1 * 10**9  # dollar
+        self.profit_dhl_billion = 4.1  # billion dollar
+        self.profit_dhl = self.profit_dhl_billion * 10**9  # dollar
+
         # Source:
-        self.profit_fedex = 1.29 * 10**9  # dollar
+        self.profit_fedex_billion = 1.29  # billion dollar
+        self.profit_fedex = self.profit_fedex_billion * 10**9  # dollar
         # Source: https://investors.ups.com/_assets/
         # _67e21ed5c7d1164af5b2ef48cec32803/ups/db/1110/9465/annual_report/
         # UPS_2021_Proxy_Statement_and_2020_Annual_Report%3B_Form_10-K.pdf
-        self.profit_ups = 7.7 * 10**9  # dollar
+        self.profit_ups_billion = 7.7  # billion dollar
+        self.profit_ups = self.profit_ups_billion * 10**9  # dollar
         # Sum the profit of these three companies
-        self.profit_dhl_fedex_ups = (
-            self.profit_dhl + self.profit_fedex + self.profit_ups
+
+        self.profit_dhl_fedex_ups_billion = (
+            self.profit_dhl_billion
+            + self.profit_fedex_billion
+            + self.profit_ups_billion
         )
+        self.profit_dhl_fedex_ups = (
+            self.profit_dhl_fedex_ups_billion * 10**9
+        )  # dollar
+
+        # Assumption 7:McKinsey study showed 16% gain in profit in logistics
+        # company through algo optimisation. It is assumed 0.1% is on average an
+        # obtainable profit increase by means of algo optimisation.
+        self.avg_algo_optimisation_profit_percentage = 0.1
+        self.avg_algo_optimisation_profit = (
+            self.avg_algo_optimisation_profit_percentage / 100
+        )
+
+        # TruCol Cut
+        self.TruCol_cut_on_profit_percentage = 1
+        self.TruCol_cut_on_profit = self.TruCol_cut_on_profit_percentage / 100
 
         # sam and tam factors
         self.sam_factor = 0.003
@@ -32,11 +54,17 @@ class Datapoints:
         # logistics-industry-forecast-to-be-worth-155tn-by-2023/
         # NOTE: this article seems an unreliable source and is outdated,
         # hence the 0.15 should possibly be changed/updated.
-        self.logistics_market_share_dhl_fedex_ups = 0.15
+        self.logistics_market_share_dhl_fedex_ups_percentage = 15
+        self.logistics_market_share_dhl_fedex_ups = (
+            self.logistics_market_share_dhl_fedex_ups_percentage / 100
+        )
 
         self.datapoints_dict = {
+            "profit_dhl_billion": self.profit_dhl_billion,
             "profit_dhl": self.profit_dhl,
+            "profit_fedex_billion": self.profit_fedex_billion,
             "profit_fedex": self.profit_fedex,
+            "profit_ups_billion": self.profit_ups_billion,
             "profit_ups": self.profit_ups,
             "profit_dhl_fedex_ups": self.profit_dhl_fedex_ups,
             "sam_factor": self.sam_factor,
@@ -44,6 +72,11 @@ class Datapoints:
             "logistics_market_share_dhl_fedex_ups": (
                 self.logistics_market_share_dhl_fedex_ups
             ),
+            "logistics_market_share_dhl_fedex_ups_percentage": self.logistics_market_share_dhl_fedex_ups_percentage,
+            "avg_algo_optimisation_profit_percentage": self.avg_algo_optimisation_profit_percentage,
+            "avg_algo_optimisation_profit": self.avg_algo_optimisation_profit,
+            "TruCol_cut_on_profit_percentage": self.TruCol_cut_on_profit_percentage,
+            "TruCol_cut_on_profit": self.TruCol_cut_on_profit,
         }
 
         # Compute the remaining market share.
