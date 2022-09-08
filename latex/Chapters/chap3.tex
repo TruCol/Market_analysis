@@ -5,7 +5,13 @@
 % What is the Market Size?
 % What is the Market Trajectory
 
-The market sizing parameters are listed in \cref{tab:market_size_params}. The description is given in \cref{subsec:market_introduction}. Ps. \textbf{bold} numbers are model parameters (and possibly assumed), \textcolor{blue}{blue} numbers follow from the model parameters. % TODO: distinguish between data and assumptions in number colour.
+The market sizing parameters are listed in \cref{tab:market_size_params}. The description is given in \cref{subsec:market_introduction}.
+\subsection{legend}
+\begin{itemize}
+	\item \textbf{bold} numbers are assumptions, used as model parameters (
+	\item \textcolor{purple}{purple} words are cited datapoints used as model parameters.
+	\item \textcolor{blue}{blue} numbers follow from the model parameters and assumptions.
+\end{itemize}
 
 \ifx\homepath\overleafhome
     % Overleaf compilation.
@@ -45,25 +51,25 @@ A clear example of a logistics company successfully hiring a support for algorit
  \begin{itemize}
  	\item \textbf{asu-6:} The logistics company made a net profit by hiring McKinsey \& Company in this particular ordeal.
 	\item \textbf{asu-7:} The example of a 16\% increase in profit is generalizable to a conservative potential \textbf{\avgalgooptimisationprofitpercentage}\% of profit increases through algorithmic optimalisation across the entire logistics industry.
-	\item \textbf{asu-8:} Companies are willing to pay at least 1 \% of their potential profit increases for the assistance the TruCol company provides in identifying opportunities for optimisation and for improving test-specification security.
+	\item \textbf{asu-8:} Companies are willing to pay at least \textbf{\TruColcutonprofitpercentage} \% of their potential profit increases for the assistance the TruCol company provides in identifying opportunities for optimisation and for improving test-specification security.
 \end{itemize}
 
 \noindent Based on those assumptions, one could find a potential yearly profit increase across the entire logistics sector by summing the net profit of the logistics sector. \cite{cips} claims that this company \cite{transparency_market_research} valued the logistics market at 8.1 trillion in 2016. Additionally, \cite{cips} claims \cite{transparency_market_research} estimates the logistics market value will grow to 15.5 trillion in 2023. However, no figures on profit are found. Therefore, individual companies are explored.
 
-For DHL one can find on pdf page 37/170 in \cite{dhl_2019_annual_report} that the annual profit for DHL in 2019 was \textbf{profitdhlbillion} billion.
+For DHL one can find on pdf page 37/170 in \cite{dhl_2019_annual_report} that the annual profit for DHL in 2019 was \textcolor{purple}{\profitdhlbillion} billion.
 
-For UPS one can find on pdf page 4/257 in \cite{ups_2020_annual_report} that the annual unadjusted operating profit for UPS in 2020 was \textbf{\profitupsbillion} billion. Note, \cite{ups_q21_earnings_call} says UPS had a net operating profit of 1.1 billion in Q1 of 2020, implying they had to almost double their average profit in the remaining three quarters of 2020 to be consistent with an annual \textbf{\profitupsbillion} billion.
+For UPS one can find on pdf page 4/257 in \cite{ups_2020_annual_report} that the annual unadjusted operating profit for UPS in 2020 was \textcolor{purple}{\profitupsbillion} billion. Note, \cite{ups_q21_earnings_call} says UPS had a net operating profit of 1.1 billion in Q1 of 2020, implying they had to almost double their average profit in the remaining three quarters of 2020 to be consistent with an annual \textcolor{purple}{\profitupsbillion} billion.
 
-For FedEx the net income as reported for 2020 has been \$\textbf{\profitfedexbillion} billion in pdf page 2/17 \cite{fedex_2020_annual_report}.
+For FedEx the net income as reported for 2020 has been \$\textcolor{purple}{\profitfedexbillion} billion in pdf page 2/17 \cite{fedex_2020_annual_report}.
 
 \begin{itemize}
 \item \textbf{Asu-9:} The net income as reported (GAAP) by FedEx can be interpreted as the profit by FedEx.
 \end{itemize}
 
-Next, the claim that fragmentation of the global market implied in 2016 that Deutsche Post DHL, Ceva Logistics, UPS, and FedEx, control less than \textbf{\logisticsmarketsharedhlfedexupspercentage}\% of that global market, allows estimating a limit on the net global profit made in the logistics market based on the following assumptions:
+Next, the claim that fragmentation of the global market implied in 2016 that Deutsche Post DHL, Ceva Logistics, UPS, and FedEx, control less than \textcolor{purple}{\logisticsmarketsharedhlfedexupspercentage}\% of that global market, allows estimating a limit on the net global profit made in the logistics market based on the following assumptions:
 
 \begin{itemize}
-	\item \textbf{Asu-10:} The market segment in the global logistics market maintained by the combination of DHL, UPS and FedEx is at most \textbf{\logisticsmarketsharedhlfedexupspercentage}\% in 2020.
+	\item \textbf{Asu-10:} The market segment in the global logistics market maintained by the combination of DHL, UPS and FedEx is at most \textcolor{purple}{\logisticsmarketsharedhlfedexupspercentage}\% in 2020.
 	\item \textbf{Asu-11:} The profit in the remaining \textcolor{blue}{85}\% of the global logistics market has the same average yearly profitability per percent market share as the combination of DHL, UPS and FedEx.
 \end{itemize}
 
@@ -73,14 +79,14 @@ Next, the claim that fragmentation of the global market implied in 2016 that Deu
 Based on assumptions 1-11 one could estimate an upperbound of
 \begin{equation}
 	\begin{split}
-		net-profit_{DHL+UPS+FedEx}=\textbf{\profitdhlbillion}+\textbf{\profitupsbillion}+\textbf{\profitfedexbillion}=\textcolor{blue}{13.09} billion\\
-		\frac{net-profit_{global\_logistics}}{net-profit_{DHL+UPS+FedEx}}=\frac{\textcolor{blue}{0.85}}{\textbf{0.15}}\\
-		net-profit_{global\_logistics}=net-profit_{DHL+UPS+FedEx}\frac{\textcolor{blue}{0.85}}{\textbf{0.15}}\\
-		net-profit_{global\_logistics}=\frac{\textcolor{blue}{13.09}\cdot\textcolor{blue}{0.85}}{\textbf{0.15}}\\
+		net-profit_{DHL+UPS+FedEx}=\textcolor{purple}{\profitdhlbillion}+\textcolor{purple}{\profitupsbillion}+\textcolor{purple}{\profitfedexbillion}=\textcolor{blue}{13.09} billion\\
+		\frac{net-profit_{global\_logistics}}{net-profit_{DHL+UPS+FedEx}}=\frac{\textcolor{blue}{0.85}}{\textcolor{purple}{0.15}}\\
+		net-profit_{global\_logistics}=net-profit_{DHL+UPS+FedEx}\frac{\textcolor{blue}{0.85}}{\textcolor{purple}{0.15}}\\
+		net-profit_{global\_logistics}=\frac{\textcolor{blue}{13.09}\cdot\textcolor{blue}{0.85}}{\textcolor{purple}{0.15}}\\
 		net-profit_{global\_logistics}=\textcolor{blue}{74.2} billion
 	\end{split}
 \end{equation}
-\textbf{TODO}: verify in model and text this is TAM or TSAM. TSAM if factor of what is practically addressable is taken into account, e.g. 0.0001\% of market in first year, that is 1 in every 10000 logistics companies. There are \textbf{X} logistics companies, so that requires us to reach out to \textbf{Y} companies and work with \textbf{Z} companies. A follow rate of \textbf{R} is required on a reachout of \textbf{Y}. 
+\textbf{TODO}: verify in model and text this is TAM or TSAM. TSAM if factor of what is practically addressable is taken into account, e.g. 0.0001\% of market in first year, that is 1 in every 10000 logistics companies. There are \textbf{X} logistics companies, so that requires us to reach out to \textbf{Y} companies and work with \textbf{Z} companies. A follow rate of \textbf{R} is required on a reachout of \textbf{Y}.
 
 Note, if TSAM is too small, realise the factor 160 might be too small (16\% demonstratable profit gain through algorithmic optimsation, 0.1\% assumed). See Monte-Carlo simulation for a larger spread on assumptions.
 
