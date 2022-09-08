@@ -1,5 +1,7 @@
 """List of cost model parameters."""
 
+from src.export_data.export_params_to_latex import dict_to_latex_table
+
 params = {
     "wages": {
         "blockchain_dev": 75 + 1,
@@ -40,12 +42,14 @@ class Cost_model:
             the_params["total_cost"] - the_params["labour_costs"]
         )
 
+        # Writes the costs model parameters to latex table.
         dict_to_latex_table(
             "latex/Tables/total_costs_table.tex",
             self.total_costs,
             "Description",
             r"Cost [\euro]",
             "Total Expected Investment Costs",
+            "total_costs_params",
         )
 
     def total_costs_to_dict(self, the_params):
@@ -82,83 +86,3 @@ class Cost_model:
             else:
                 total_cost = total_cost + int(value)
         return total_cost
-
-
-def dict_to_latex_table(
-    filepath: str,
-    the_params: dict,
-    key_header: str,
-    value_header: str,
-    caption: str,
-):
-    """Writes a dict to a latex file.
-
-    :param the_params: dict:
-    :param key_header: str:
-    :param value_header: str:
-    :param caption: str:
-    """
-    tuples = dict_to_latex_tuples(the_params)
-
-    with open(filepath, "w", encoding="utf-8") as f:
-        backreturn = "\\\\\n" + " " * 4
-
-        content = backreturn.join(
-            [f"{_tuple[0]} & {_tuple[1]}" for _tuple in tuples]
-        )
-
-        f.write(
-            f"""
-\\begin{{longtable}}{{@{{}}cp{{.7\\textwidth}}@{{}}}}
-    \\caption{{{caption}\\label{{table:nonlin}}}}\\\\
-    \\toprule
-    {{\\bfseries {key_header}}} & {{\\bfseries {value_header}}} \\\\ \\midrule
-    \\endfirsthead
-    \\caption{{{caption} (continued)}}\\\\
-    \\toprule
-    \\multicolumn{{2}}{{l}}{{\\scriptsize\\emph{{\\ldots{{}} continued}}}}\\\\
-    {{\\bfseries {key_header}}} & {{\\bfseries {value_header}}} \\\\ \\midrule
-    \\endhead
-    \\multicolumn{{2}}{{r}}{{\\scriptsize\\emph{{to be continued\\ldots}}}}\\\\
-    \\bottomrule
-    \\endfoot
-    \\bottomrule
-    \\endlastfoot
-    {content}\\\\
-\\end{{longtable}}
-    """.strip()
-        )
-
-
-def flatten_dict(some_dict: dict):
-    """Flattens a dict that contains values and dicts.
-
-    :param some_dict: dict:
-    """
-    flat_dict = {}
-    # Flatten dict
-    for key, value in some_dict.items():
-        if isinstance(value, dict):
-            for newKey, newValue in value.items():
-                flat_dict[newKey] = newValue
-        else:
-            flat_dict[key] = value
-    return flat_dict
-
-
-def dict_to_latex_tuples(some_dict: dict):
-    """Converts a dict to a list of key,value tuples without underscores.
-
-    :param some_dict: dict:
-    """
-    flat_dict = flatten_dict(some_dict)
-    tuples = []
-    for key, value in flat_dict.items():
-        if isinstance(key, str):
-            key = key.replace("_", " ")
-            key = key.replace("&", r"\&")
-        if isinstance(value, str):
-            value = value.replace("_", " ")
-            value = value.replace("&", r"\&")
-        tuples.append((key, value))
-    return tuples

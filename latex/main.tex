@@ -18,6 +18,9 @@
 \makeatother
 
 %%%%%%%%%Custom
+% COlour text.
+\usepackage {xcolor}
+
 % Allow linking in document.
 \usepackage{hyperref}
 
@@ -37,10 +40,10 @@
 
 \ifx\homepath\overleafhome
     % Overleaf compilation.
-    \input{Tables/params.tex} %\newpage
+    \input{Tables/top_down_params.tex} %\newpage
 \else
     % Local compilation
-    \input{latex/Tables/params.tex} %\newpage
+    \input{latex/Tables/top_down_params.tex} %\newpage
 \fi
 
 % Specify compilation name.

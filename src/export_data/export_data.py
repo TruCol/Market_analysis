@@ -1,16 +1,14 @@
 """File used to export data to latex."""
 from pprint import pprint
 
-from src.Cost_model import dict_to_latex_table
 from src.export_data.create_dynamic_diagrams import create_dynamic_diagrams
 from src.export_data.create_static_diagrams import create_static_diagrams
 from src.export_data.Hardcoded_data import Hardcoded_data
-from src.export_data.helper_dir_file_edit import overwrite_file
 from src.export_data.latex_compile import compile_latex
 from src.export_data.latex_export_code import export_code_to_latex
 
 
-def export_data(args, params):
+def export_data(args):
     """Parses the Python arguments that specify what should be compiled.
 
     :param args:
@@ -18,23 +16,7 @@ def export_data(args, params):
 
     hd = Hardcoded_data()
 
-    param_lines = export_latex_params(params)
-    print(f"param_lines={param_lines}")
-
-    # Export parameters to file.
-    overwrite_file("latex/Tables/params.tex", param_lines)
-
-    # Export model parameters to Latex table:
-    dict_to_latex_table(
-        "latex/Tables/params_table.tex",
-        params,
-        "Parameter",
-        "Value",
-        (
-            r"Cost Model Parameters in \euro (/hr or absolute, unless"
-            + "specified otherwise)"
-        ),
-    )
+    # Parameter exporting is done in the models themselves.
 
     # Generating PlantUML diagrams
     create_dynamic_diagrams(args, hd)
@@ -65,7 +47,7 @@ def export_data(args, params):
     print("\n\nDone exporting data.")
 
 
-def export_latex_params(params):
+def get_latex_param_lines(params):
     """Exports the model parameters and computed values to LaTex variables."""
     # Export model parameters to .tex file with LaTex variables.
     param_lines = []

@@ -6,7 +6,7 @@
 
 
 # Loop over the main .tex files to compile for different conferences.
-for OUTPUT in $(echo "main" "seed_milestone_fund")
+for OUTPUT in $(echo "main")
 do
     REPORT_FILENAME=$OUTPUT
     echo "REPORT_FILENAME=$REPORT_FILENAME"
@@ -224,7 +224,7 @@ do
 		fi
 	}
 
-
+	echo "PATH_TO_REPORT_TEX_FILE=$PATH_TO_REPORT_TEX_FILE"
 	## Ensure the script is executed from the root directory.
 	if [ "$(is_root_dir $PATH_TO_REPORT_TEX_FILE)" == "FOUND" ] ; then
 		echo "FOUND"

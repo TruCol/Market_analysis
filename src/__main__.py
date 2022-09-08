@@ -3,7 +3,6 @@ export commands are given to the cli command that invokes this script."""
 
 
 from src.arg_parser import parse_cli_args
-from src.Cost_model import params
 from src.export_data.export_data import export_data
 
 # Project code imports.
@@ -23,4 +22,4 @@ model = Model_top_down()
 if not all(
     arg is None for arg in [args.l, args.dd, args.sd, args.c2l, args.ec2l]
 ):
-    export_data(args, params)
+    export_data(args)
