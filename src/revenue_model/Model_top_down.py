@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import ticker
 
+from src.export_data.export_params_to_latex import (
+    export_params_to_latex_params_and_table,
+)
 from src.revenue_model.Datapoints import Datapoints
 
 
@@ -24,6 +27,16 @@ class Model_top_down:
         x = self.avg_randomness(x_series)
 
         self.plot_data(x, y)
+
+        # Convert parameters to dictionary.
+        model_params = {
+            "nr_simulations": self.nr_simulations,
+        }
+
+        param_dict = model_params | self.dp.datapoints_dict
+        export_params_to_latex_params_and_table(
+            param_dict, "latex/Tables/top_down"
+        )
 
     def sum_revenues(self, x_series):
         """Computes the summed revenue.

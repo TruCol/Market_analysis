@@ -2,6 +2,8 @@
 
 
 # pylint: disable=R0902
+
+
 class Datapoints:
     """Initialise the datapoints and compute basic datapoints that can be
     derived from the datapoints and/or assumptions."""
@@ -31,6 +33,18 @@ class Datapoints:
         # NOTE: this article seems an unreliable source and is outdated,
         # hence the 0.15 should possibly be changed/updated.
         self.logistics_market_share_dhl_fedex_ups = 0.15
+
+        self.datapoints_dict = {
+            "profit_dhl": self.profit_dhl,
+            "profit_fedex": self.profit_fedex,
+            "profit_ups": self.profit_ups,
+            "profit_dhl_fedex_ups": self.profit_dhl_fedex_ups,
+            "sam_factor": self.sam_factor,
+            "tam_factor": self.tam_factor,
+            "logistics_market_share_dhl_fedex_ups": (
+                self.logistics_market_share_dhl_fedex_ups
+            ),
+        }
 
         # Compute the remaining market share.
         self.logistics_market_share_remaining = (
