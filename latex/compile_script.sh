@@ -6,7 +6,8 @@
 
 
 # Loop over the main .tex files to compile for different conferences.
-for OUTPUT in $(echo "main")
+#for OUTPUT in $(echo "main")
+for OUTPUT in $(echo "TruCol_market_analysis")
 do
     REPORT_FILENAME=$OUTPUT
     echo "REPORT_FILENAME=$REPORT_FILENAME"
