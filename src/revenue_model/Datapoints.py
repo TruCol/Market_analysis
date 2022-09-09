@@ -34,8 +34,8 @@ class Datapoints:
         )  # dollar
 
         # Assumption 7:McKinsey study showed 16% gain in profit in logistics
-        # company through algo optimisation. It is assumed 0.1% is on average an
-        # obtainable profit increase by means of algo optimisation.
+        # company through algo optimisation. It is assumed 0.1% is on average
+        # an obtainable profit increase by means of algo optimisation.
         self.avg_algo_optimisation_profit_percentage = 0.1
         self.avg_algo_optimisation_profit = (
             self.avg_algo_optimisation_profit_percentage / 100
@@ -72,10 +72,14 @@ class Datapoints:
             "logistics_market_share_dhl_fedex_ups": (
                 self.logistics_market_share_dhl_fedex_ups
             ),
-            "logistics_market_share_dhl_fedex_ups_percentage": self.logistics_market_share_dhl_fedex_ups_percentage,
-            "avg_algo_optimisation_profit_percentage": self.avg_algo_optimisation_profit_percentage,
+            "logistics_market_share_dhl_fedex_ups_percentage": (
+                self.logistics_market_share_dhl_fedex_ups_percentage
+            ),
+            "avg_algo_optimisation_profit_percentage": (
+                self.avg_algo_optimisation_profit_percentage),
             "avg_algo_optimisation_profit": self.avg_algo_optimisation_profit,
-            "TruCol_cut_on_profit_percentage": self.TruCol_cut_on_profit_percentage,
+            "TruCol_cut_on_profit_percentage": (
+                self.TruCol_cut_on_profit_percentage),
             "TruCol_cut_on_profit": self.TruCol_cut_on_profit,
         }
 

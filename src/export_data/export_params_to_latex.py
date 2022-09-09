@@ -78,6 +78,7 @@ def get_latex_param_lines(params):
     return param_lines
 
 
+# pylint: disable=R0913
 def dict_to_latex_table(
     filepath: str,
     the_params: dict,
